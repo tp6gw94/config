@@ -1,0 +1,43 @@
+live_config_reload: true
+tabspaces: 4
+window.opacity: 0.9
+
+import:
+  - ~/.alacritty-colorscheme/themes/tokyo-night-storm.yaml
+
+shell:
+  program: /bin/zsh
+window:
+  padding:
+    x: 6
+    y: 6
+  decorations: buttonless
+
+font:
+  size: 14
+  normal:
+    family: JetBrainsMono Nerd Font 
+    style: Regular
+  bold:
+    family: JetBrainsMono Nerd Font
+    style: Bold
+  italic:
+    family: JetBrainsMono Nerd Font
+    style: Italic
+  bold_italic:
+    family: JetBrainsMono Nerd Font
+    style: Bold Italic
+
+use_thin_strokes: true
+
+key_bindings:
+  - { key: T, mods: Command, action: CreateNewWindow }
+  - { key: W, mods: Command, action: Quit }
+  - { key: J,        mods: Alt,     chars: "\x1bj"                       }
+  - { key: K,        mods: Alt,     chars: "\x1bk"                       }
+  - { key: H,        mods: Alt,     chars: "\x1bh"                       }
+  - { key: L,        mods: Alt,     chars: "\x1bl"                       }
+  - {key: Period, mods: Alt, chars: "\x1b."}
+
+env:
+  TERM: xterm-256color
