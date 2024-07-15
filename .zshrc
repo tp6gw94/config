@@ -20,3 +20,5 @@ export PATH="$PNPM_HOME:$PATH"
 
 alias pn="pnpm"
 alias lg="lazygit"
+
+eval "$(zoxide init zsh)"
