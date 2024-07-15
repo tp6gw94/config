@@ -11,6 +11,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 export PATH="~/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/Documents/game porting toolkit:$PATH"
+export PATH="$HOME/.config/tmux/plugins/tmux-session-wizard/bin:$PATH"
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
