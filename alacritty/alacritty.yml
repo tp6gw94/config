@@ -3,7 +3,7 @@ tabspaces: 4
 window.opacity: 0.9
 
 import:
-  - ~/.alacritty-colorscheme/themes/tokyo-night-storm.yaml
+  - ~/.config/alacritty/catppuccin/catppuccin-latte.yml
 
 shell:
   program: /bin/zsh
