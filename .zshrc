@@ -1,5 +1,5 @@
 source "$HOME/.local/share/zap/zap.zsh"
-source "/usr/local/opt/asdf/libexec/asdf.sh"
+source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
 
 plug "zap-zsh/supercharge"
 plug "zap-zsh/zap-prompt"
@@ -12,6 +12,7 @@ export PATH="~/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/Documents/game porting toolkit:$PATH"
 export PATH="$HOME/.config/tmux/plugins/tmux-session-wizard/bin:$PATH"
+export PATH="$HOME/.asdf/shims:$PATH"
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
@@ -21,4 +22,5 @@ export PATH="$PNPM_HOME:$PATH"
 alias pn="pnpm"
 alias lg="lazygit"
 
+eval "$(/usr/local/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
