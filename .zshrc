@@ -1,5 +1,8 @@
+eval "$(/usr/local/bin/brew shellenv)"
+
 source "$HOME/.local/share/zap/zap.zsh"
 source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
+eval "$(zoxide init zsh)"
 
 plug "zap-zsh/supercharge"
 plug "zap-zsh/zap-prompt"
@@ -22,5 +25,3 @@ export PATH="$PNPM_HOME:$PATH"
 alias pn="pnpm"
 alias lg="lazygit"
 
-eval "$(/usr/local/bin/brew shellenv)"
-eval "$(zoxide init zsh)"
