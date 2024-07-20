@@ -14,6 +14,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.config/tmux/plugins/tmux-session-wizard/bin:$PATH"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
