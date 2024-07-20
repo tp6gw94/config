@@ -1,0 +1,28 @@
+gui:
+  language: "zh-TW"
+  showIcons: true
+confirmOnQuit: true
+customCommands:
+  - key: "w"
+    prompts:
+      - type: "input"
+        title: "Commit"
+        initialValue: "WIP"
+    command: git commit -m "{{index .PromptResponses 0}}" --no-verify
+    context: "files"
+    subprocess: true
+    description: "Commit message without verify"
+
+  - key: "A"
+    command: git commit --amend {{.Form.V}} --no-edit
+    prompts:
+      - type: "menu"
+        title: "Need verify ?"
+        key: "V"
+        options:
+          - value:
+            name: "Verify"
+          - value: --no-verify
+            name: "Skip"
+    context: "files"
+    description: "Amend commit"
