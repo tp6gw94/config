@@ -9,7 +9,7 @@
 {
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_size": 16,
-  "theme": "One Light",
+  "theme": "Catppuccin Latte",
   "ui_font_family": "JetBrainsMono Nerd Font",
   "ui_font_size": 16,
   "vim_mode": true,
@@ -20,6 +20,25 @@
   "use_system_clipboard": "always",
   "languages": {
     "TypeScript": {
+      "inlay_hints": {
+        "enabled": true
+      },
+      "language_servers": ["!typescript-language-server", "vtsls"],
+      "format_on_save": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "TSX": {
+      "inlay_hints": {
+        "enabled": true
+      },
+      "language_servers": ["!typescript-language-server", "vtsls"],
       "format_on_save": {
         "external": {
           "command": "prettier",
@@ -32,11 +51,26 @@
     }
   },
   "lsp": {
-    "tsserver": {
-      "initialization_options": {
-        "preferences": {},
-        "plugins": ["@styled/typescript-styled-plugin"]
+    "vtsls": {
+      "tsserver": {
+        "globalPlugins": [
+          {
+            "name": "@styled/typescript-styled-plugin",
+            "location": "~/.asdf/installs/nodejs/22.5.0/lib/node_modules",
+            "enableForWorkspaceTypeScriptVersions": true
+          }
+        ]
       }
     }
+    // "tsserver": {
+    //   "initialization_options": {
+    //     "preferences": {},
+    //     "plugins": [
+    //       {
+    //         "name": "@styled/typescript-styled-plugin",
+    //       }
+    //     ]
+    //   }
+    // }
   }
 }
