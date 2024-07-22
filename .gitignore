@@ -1,8 +1,4 @@
-*
-!alacritty
-!tmux
-!nvim
-!lazygit
-!.gitignore
-!install.sh
-!zed
+.tmp*
+.DS_Store
+/zed/embeddings
+/zed/prompts
