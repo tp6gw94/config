@@ -1,22 +1,23 @@
 [
   {
-    "context": "Pane",
-    "bindings": {
-      "shift-h": "pane::ActivatePrevItem",
-      "shift-l": "pane::ActivateNextItem"
-    }
-  },
-  {
     "context": "Editor && VimControl && !VimWaiting && !menu",
     "bindings": {
       "space c a": "editor::ToggleCodeActions",
+      "space c r": "editor::Rename",
       "g r": "editor::FindAllReferences",
-      "shift-h": null,
-      "shift-l": null,
+      "shift-h": "pane::ActivatePrevItem",
+      "shift-l": "pane::ActivateNextItem",
       "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
       "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
       "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
       "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
+    }
+  },
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      "g h": "editor::GoToHunk",
+      "g shift-h": "editor::GoToPrevHunk"
     }
   },
   {
