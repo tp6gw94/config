@@ -1,5 +1,12 @@
 [
   {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "ctrl-d": ["vim::ScrollDown", "editor::ScrollCursorCenter"],
+      "ctrl-u": ["vim::ScrollUp", "editor::ScrollCursorCenter"]
+    }
+  },
+  {
     "context": "Editor && VimControl && !VimWaiting && !menu",
     "bindings": {
       "space c a": "editor::ToggleCodeActions",
@@ -10,20 +17,22 @@
       "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
       "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
       "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "g h": "editor::GoToHunk",
+      "g H": "editor::GoToPrevHunk"
     }
   },
   {
     "context": "Editor && mode == full",
     "bindings": {
-      "g h": "editor::GoToHunk",
-      "g shift-h": "editor::GoToPrevHunk"
+      "alt-l": "editor::AcceptPartialInlineCompletion"
     }
   },
   {
     "context": "Editor && showing_completions",
     "bindings": {
-      "tab": null
+      "tab": null,
+      "ctrl-y": "editor::ComposeCompletion"
     }
   },
   {
