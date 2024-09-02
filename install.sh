@@ -12,3 +12,10 @@ zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) 
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf install nodejs latest
 asdf global nodejs latest
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+cargo install --locked zellij
+
+npm install -g graphql-language-service pnpm yarn typescript-language-server typescript vscode-langservers-extracted prettier
+

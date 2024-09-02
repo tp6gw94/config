@@ -1,0 +1,47 @@
+[language-server]
+deno = { command = "deno", args = ["lsp"] }
+
+[language-server.typescript-language-server]
+command = "typescript-language-server"
+args = ["--stdio"]
+config.hostInfo = "helix"
+
+[language-server.typescript-language-server.config.typescript.inlayHints]
+includeInlayEnumMemberValueHints = true
+includeInlayFunctionLikeReturnTypeHints = false
+includeInlayFunctionParameterTypeHints = false
+includeInlayParameterNameHints = "literals"
+includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayPropertyDeclarationTypeHints = false
+includeInlayVariableTypeHints = false
+
+[[language]]
+name = "html"
+auto-format = true
+language-servers = ["vscode-html-language-server"]
+formatter = { command = "prettier", args = ["--parser", "html"] }
+
+[[language]]
+name = "typescript"
+auto-format = true
+language-servers = ["typescript-language-server", "vscode-eslint-language-server", "graphql-language-service"]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name = "javascript"
+auto-format = true
+language-servers = ["typescript-language-server", "vscode-eslint-language-server", "graphql-language-service"]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name = "tsx"
+auto-format = true
+language-servers = ["typescript-language-server", "vscode-eslint-language-server", "graphql-language-service"]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name = "jsx"
+auto-format = true
+language-servers = ["typescript-language-server", "vscode-eslint-language-server", "graphql-language-service"]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+

@@ -63,6 +63,7 @@ program = "/bin/zsh"
 
 [window]
 decorations = "buttonless"
+option_as_alt = "Both"
 
 [window.padding]
 x = 6
