@@ -1,6 +1,17 @@
 simplified_ui true
 theme "catppuccin-mocha"
 
+keybinds {
+    locked {
+        bind "Alt l" { MoveFocus "Right"; }
+        bind "Alt h" { MoveFocus "Left"; }
+        bind "Alt j" { MoveFocus "Up"; }
+        bind "Alt k" { MoveFocus "Down"; }
+        bind "Alt z" { ToggleFocusFullscreen; }
+        bind "Alt n" { NewPane; }
+    }
+}
+
 themes {
     tokyo-night-light {
         fg 52 59 88

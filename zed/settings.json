@@ -15,29 +15,28 @@
     "version": "2"
   },
   "buffer_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_size": 14,
+  "buffer_line_height": "standard",
+  "ui_font_family": "JetBrainsMono Nerd Font",
+  "ui_font_size": 14,
+  "ui_font_weight": 600,
   "project_panel": {
     "dock": "right"
   },
-  "tab_bar": {
-    "show": false
-  },
-  "buffer_font_size": 14,
-  "theme": "macOS Classic Light",
-  "ui_font_family": "JetBrainsMono Nerd Font",
-  "ui_font_size": 14,
+  "theme": "Github Light",
   "vim_mode": true,
   "relative_line_numbers": true,
   "scrollbar": {
     "show": "never"
-  },
-  "terminal": {
-    "working_directory": "always_home"
   },
   "use_system_clipboard": "always",
   "git": {
     "inline_blame": {
       "enabled": true
     }
+  },
+  "inlay_hints": {
+    "enabled": true
   },
   "languages": {
     "TypeScript": {
@@ -46,7 +45,7 @@
         "show_type_hints": false
       },
       "language_servers": ["!typescript-language-server", "vtsls", "eslint"],
-      "format_on_save": {
+      "formatter": {
         "external": {
           "command": "prettier",
           "arguments": ["--stdin-filepath", "{buffer_path}"]
@@ -56,13 +55,13 @@
         "source.fixAll.eslint": true
       }
     },
-    "TSX": {
+    "JavaScript": {
       "inlay_hints": {
         "enabled": true,
         "show_type_hints": false
       },
       "language_servers": ["!typescript-language-server", "vtsls", "eslint"],
-      "format_on_save": {
+      "formatter": {
         "external": {
           "command": "prettier",
           "arguments": ["--stdin-filepath", "{buffer_path}"]
@@ -75,31 +74,30 @@
   },
   "lsp": {
     "vtsls": {
-      "typescript": {
-        "preferences": {
-          "importModuleSpecifier": "project-relative"
+      "setting": {
+        "typescript": {
+          "preferences": {
+            "importModuleSpecifier": "project-relative"
+          },
+          "tsserver": {
+            "maxTsServerMemory": 16184
+          }
         }
-      },
-      "tsserver": {
-        // "globalPlugins": [
-        //   {
-        //     "name": "@styled/typescript-styled-plugin",
-        //     "location": "~/.asdf/installs/nodejs/22.5.0/lib/node_modules",
-        //     "enableForWorkspaceTypeScriptVersions": true
-        //   }
-        // ]
+      }
+    },
+    "rust-analyzer": {
+      "initiallization_options": {
+        "inlayHints": {
+          "maxLength": null,
+          "lifetimeElisionHints": {
+            "useParameterNames": true,
+            "enable": "skip_trivial"
+          },
+          "closureReturnTypeHints": {
+            "enable": "always"
+          }
+        }
       }
     }
-    // "tsserver": {
-    //   "initialization_options": {
-    //     "preferences": {},
-    //     "plugins": [
-    //       {
-    //         "name": "@styled/typescript-styled-plugin",
-    //         "location": "~/.asdf/installs/nodejs/22.5.0/lib/node_modules"
-    //       }
-    //     ]
-    //   }
-    // }
   }
 }

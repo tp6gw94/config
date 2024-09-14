@@ -2,24 +2,58 @@
   {
     "context": "VimControl && !menu",
     "bindings": {
-      "ctrl-d": ["vim::ScrollDown", "editor::ScrollCursorCenter"],
-      "ctrl-u": ["vim::ScrollUp", "editor::ScrollCursorCenter"]
+      "ctrl-shift-d": "vim::ScrollDown",
+      "ctrl-d": ["workspace::SendKeystrokes", "ctrl-shift-d z z"],
+
+      "ctrl-shift-u": "vim::ScrollUp",
+      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-shift-u z z"],
+
+      "ctrl-shift-n": "vim::MoveToNextMatch",
+      "n": ["workspace::SendKeystrokes", "ctrl-shift-n z z"],
+
+      "ctrl-shift-N": "vim::MoveToPrevMatch",
+      "N": ["workspace::SendKeystrokes", "ctrl-shift-N z z"]
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-k": "editor::MoveLineUp",
+      "shift-j": "editor::MoveLineDown"
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore"
     }
   },
   {
     "context": "Editor && VimControl && !VimWaiting && !menu",
     "bindings": {
+      // space code actions
       "space c a": "editor::ToggleCodeActions",
       "space c r": "editor::Rename",
-      "g r": "editor::FindAllReferences",
+      // space find actions
+      "space f t": "tab_switcher::Toggle",
+      "space f f": "file_finder::Toggle",
+
+      "space e": "project_panel::ToggleFocus",
+      "space s": "outline::Toggle",
+      "space S": "project_symbols::Toggle",
+
       "shift-h": "pane::ActivatePrevItem",
       "shift-l": "pane::ActivateNextItem",
-      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      // go to mode
+      "g r": "editor::FindAllReferences",
       "g h": "editor::GoToHunk",
       "g H": "editor::GoToPrevHunk"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "space e": "project_panel::ToggleFocus"
     }
   },
   {
