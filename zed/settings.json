@@ -23,6 +23,10 @@
   "project_panel": {
     "dock": "right"
   },
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": false
+  },
   "theme": "Github Light",
   "vim_mode": true,
   "relative_line_numbers": true,
@@ -35,15 +39,8 @@
       "enabled": true
     }
   },
-  "inlay_hints": {
-    "enabled": true
-  },
   "languages": {
     "TypeScript": {
-      "inlay_hints": {
-        "enabled": true,
-        "show_type_hints": false
-      },
       "language_servers": ["!typescript-language-server", "vtsls", "eslint"],
       "formatter": {
         "external": {
@@ -56,10 +53,6 @@
       }
     },
     "JavaScript": {
-      "inlay_hints": {
-        "enabled": true,
-        "show_type_hints": false
-      },
       "language_servers": ["!typescript-language-server", "vtsls", "eslint"],
       "formatter": {
         "external": {
