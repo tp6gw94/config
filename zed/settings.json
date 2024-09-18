@@ -23,11 +23,7 @@
   "project_panel": {
     "dock": "right"
   },
-  "inlay_hints": {
-    "enabled": true,
-    "show_type_hints": false
-  },
-  "theme": "Github Light",
+  "theme": "One Light",
   "vim_mode": true,
   "relative_line_numbers": true,
   "scrollbar": {
@@ -38,6 +34,10 @@
     "inline_blame": {
       "enabled": true
     }
+  },
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": false
   },
   "languages": {
     "TypeScript": {

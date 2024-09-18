@@ -54,7 +54,9 @@
     "context": "ProjectPanel",
     "bindings": {
       "ctrl-shift-e": "project_panel::ToggleFocus",
-      "space e": ["workspace::SendKeystrokes", "ctrl-shift-e cmd-r"]
+      "space e": ["workspace::SendKeystrokes", "ctrl-shift-e cmd-r"],
+      "shift-a": "project_panel::NewDirectory",
+      "d": "project_panel::Trash"
     }
   },
   {
