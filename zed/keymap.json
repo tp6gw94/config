@@ -12,7 +12,10 @@
       "n": ["workspace::SendKeystrokes", "ctrl-shift-n z z"],
 
       "ctrl-shift-N": "vim::MoveToPrevMatch",
-      "N": ["workspace::SendKeystrokes", "ctrl-shift-N z z"]
+      "N": ["workspace::SendKeystrokes", "ctrl-shift-N z z"],
+
+      "cmd-shift-h": "pane::SwapItemLeft",
+      "cmd-shift-l": "pane::SwapItemRight"
     }
   },
   {
@@ -55,8 +58,7 @@
     "bindings": {
       "ctrl-shift-e": "project_panel::ToggleFocus",
       "space e": ["workspace::SendKeystrokes", "ctrl-shift-e cmd-r"],
-      "shift-a": "project_panel::NewDirectory",
-      "d": "project_panel::Trash"
+      "shift-a": "project_panel::NewDirectory"
     }
   },
   {

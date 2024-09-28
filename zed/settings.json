@@ -67,7 +67,7 @@
   },
   "lsp": {
     "vtsls": {
-      "setting": {
+      "settings": {
         "typescript": {
           "preferences": {
             "importModuleSpecifier": "project-relative"
