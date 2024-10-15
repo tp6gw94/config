@@ -14,6 +14,8 @@ export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.config/tmux/plugins/tmux-session-wizard/bin:$PATH"
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
+export PATH="$PATH:/usr/local/bin"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # pnpm
@@ -44,7 +46,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.config/tmux/plugins/tmux-session-wizard/bin:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
-export EDITOR="hx"
+export EDITOR="zed --wait"
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
