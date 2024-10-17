@@ -1,0 +1,10 @@
+[
+  {
+    "label": "ESLint fix",
+    "command": "eslint --fix $ZED_FILE"
+  },
+  {
+    "label": "Lazygit",
+    "command": "lazygit"
+  }
+]
