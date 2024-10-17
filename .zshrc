@@ -1,31 +1,3 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
-
-source "$HOME/.local/share/zap/zap.zsh"
-source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
-
-plug "zap-zsh/supercharge"
-plug "zsh-users/zsh-autosuggestions"
-plug "zsh-users/zsh-syntax-highlighting"
-plug "esc/conda-zsh-completion"
-
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.config/tmux/plugins/tmux-session-wizard/bin:$PATH"
-export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
-export PATH="$PATH:/usr/local/bin"
-export XDG_CONFIG_HOME="$HOME/.config"
-
-# pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
-
-alias pn="pnpm"
-alias lg="lazygit"
-
 # Amazon Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -45,6 +17,8 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.config/tmux/plugins/tmux-session-wizard/bin:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
+export PATH="$PATH:/usr/local/bin"
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR="zed --wait"
 
