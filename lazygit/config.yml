@@ -1,6 +1,9 @@
 gui:
   language: "zh-TW"
   showIcons: true
+os:
+  open: "open {{filename}}"
+  editPreset: "zed"
 confirmOnQuit: true
 customCommands:
   - key: "w"
@@ -20,9 +23,22 @@ customCommands:
         title: "Need verify ?"
         key: "V"
         options:
-          - value:
+          - value: " "
             name: "Verify"
           - value: --no-verify
             name: "Skip"
     context: "files"
     description: "Amend commit"
+
+  - key: "<c-p>"
+    command: git cherry-pick -x {{.SelectedSubCommit.Sha}}
+    prompts:
+      - type: "confirm"
+        title: "Cherry-pick {{.SelectedSubCommit.Name}} ?"
+    context: "subCommits"
+    description: "Cherry-pick commit with sha"
+
+  - key: "F"
+    context: remotes
+    command: "git fetch --prune origin --verbose"
+    description: "Fetch remote branches"
