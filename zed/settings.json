@@ -23,9 +23,17 @@
   "project_panel": {
     "dock": "right"
   },
-  "theme": "One Light",
+  "tab_bar": {
+    "show": false
+  },
+  "theme": "Catppuccin Latte",
+  "terminal": {
+    "option_as_meta": true
+  },
   "vim_mode": true,
-  "relative_line_numbers": true,
+  "vim": {
+    "toggle_relative_line_numbers": true
+  },
   "scrollbar": {
     "show": "never"
   },
@@ -36,7 +44,7 @@
     }
   },
   "inlay_hints": {
-    "enabled": true,
+    "enabled": false,
     "show_type_hints": false
   },
   "languages": {
@@ -70,7 +78,7 @@
       "settings": {
         "typescript": {
           "preferences": {
-            "importModuleSpecifier": "project-relative"
+            "importModuleSpecifier": "non-relative"
           },
           "tsserver": {
             "maxTsServerMemory": 16184

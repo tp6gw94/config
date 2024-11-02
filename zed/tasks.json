@@ -5,6 +5,23 @@
   },
   {
     "label": "Lazygit",
-    "command": "lazygit"
+    "command": "lazygit",
+    "hide": "on_success",
+    "allow_concurrent_runs": true,
+    "reveal": "always"
+  },
+  {
+    "label": "yazi current",
+    "command": "yazi $ZED_FILE",
+    "hide": "on_success",
+    "allow_concurrent_runs": true,
+    "reveal": "always"
+  },
+  {
+    "label": "yazi root",
+    "command": "yazi $ZED_WORKTREE_ROOT",
+    "hide": "on_success",
+    "allow_concurrent_runs": true,
+    "reveal": "always"
   }
 ]
