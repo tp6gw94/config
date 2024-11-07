@@ -46,7 +46,7 @@
       "space c a": "editor::ToggleCodeActions",
       "space c r": "editor::Rename",
       // space find actions
-      "space t": "tab_switcher::Toggle",
+      "ctrl-t": "tab_switcher::Toggle",
       "space f f": "file_finder::Toggle",
       // git
       "space g d": "editor::ToggleHunkDiff",
@@ -54,7 +54,7 @@
 
       "space s": "outline::Toggle",
       "space S": "project_symbols::Toggle",
-      "ctrl-t": "task::Spawn",
+      "space t": "task::Spawn",
 
       "shift-h": "pane::ActivatePrevItem",
       "shift-l": "pane::ActivateNextItem",
@@ -66,12 +66,6 @@
       "g H": "editor::GoToPrevHunk",
       "ctrl-w g d": "editor::GoToDefinition",
       "ctrl-w g D": "editor::GoToTypeDefinition"
-    }
-  },
-  {
-    "context": "ProjectPanel",
-    "bindings": {
-      "shift-a": "project_panel::NewDirectory"
     }
   },
   {
@@ -102,9 +96,22 @@
     "context": "ProjectPanel && not_editing",
     "bindings": {
       "a": "project_panel::NewFile",
+      "shift-a": "project_panel::NewDirectory",
       "d": "project_panel::Delete",
       "r": "project_panel::Rename",
       "o": "project_panel::Open"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-e": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-e": "project_panel::ToggleFocus"
     }
   },
   {

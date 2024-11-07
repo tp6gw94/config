@@ -8,6 +8,7 @@
 // from the command palette or from `Zed` application menu.
 {
   "assistant": {
+    "enable_experimental_live_diffs": true,
     "default_model": {
       "provider": "copilot_chat",
       "model": "gpt-4o"
@@ -40,7 +41,8 @@
   "use_system_clipboard": "always",
   "git": {
     "inline_blame": {
-      "enabled": true
+      "enabled": true,
+      "show_commit_summary": true
     }
   },
   "inlay_hints": {
