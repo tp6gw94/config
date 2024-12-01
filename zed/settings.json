@@ -8,7 +8,6 @@
 // from the command palette or from `Zed` application menu.
 {
   "assistant": {
-    "enable_experimental_live_diffs": true,
     "default_model": {
       "provider": "copilot_chat",
       "model": "gpt-4o"
@@ -25,7 +24,12 @@
     "dock": "right"
   },
   "tab_bar": {
-    "show": false
+    "show": true,
+    "show_nav_history_buttons": true
+  },
+  "tabs": {
+    "git_status": true,
+    "file_icons": true
   },
   "theme": "Catppuccin Latte",
   "terminal": {
@@ -41,8 +45,7 @@
   "use_system_clipboard": "always",
   "git": {
     "inline_blame": {
-      "enabled": true,
-      "show_commit_summary": true
+      "enabled": true
     }
   },
   "inlay_hints": {
