@@ -1,5 +1,11 @@
 [
   {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      "space space": "file_finder::Toggle"
+    }
+  },
+  {
     "context": "VimControl && !menu",
     "bindings": {
       "ctrl-shift-d": "vim::ScrollDown",
@@ -17,8 +23,8 @@
       "cmd-shift-h": "pane::SwapItemLeft",
       "cmd-shift-l": "pane::SwapItemRight",
 
-      "space e": ["task::Spawn", { "task_name": "yazi current" }],
-      "space E": ["task::Spawn", { "task_name": "yazi root" }],
+      // "space e": ["task::Spawn", { "task_name": "yazi current" }],
+      // "space E": ["task::Spawn", { "task_name": "yazi root" }],
       "space f": ["task::Spawn", { "task_name": "search:project" }],
 
       "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
@@ -41,8 +47,10 @@
     }
   },
   {
-    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
+      "space space": "file_finder::Toggle",
+
       // space code actions
       "space c a": "editor::ToggleCodeActions",
       "space c r": "editor::Rename",
@@ -56,6 +64,7 @@
       "space s": "outline::Toggle",
       "space S": "project_symbols::Toggle",
       "space t": "task::Spawn",
+      "space e": "pane::RevealInProjectPanel",
 
       "shift-h": "pane::ActivatePrevItem",
       "shift-l": "pane::ActivateNextItem",
@@ -66,7 +75,12 @@
       "g h": "editor::GoToHunk",
       "g H": "editor::GoToPrevHunk",
       "ctrl-w g d": "editor::GoToDefinition",
-      "ctrl-w g D": "editor::GoToTypeDefinition"
+      "ctrl-w g D": "editor::GoToTypeDefinition",
+
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPrevDiagnostic",
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPrevHunk"
     }
   },
   {
@@ -100,7 +114,8 @@
       "shift-a": "project_panel::NewDirectory",
       "d": "project_panel::Delete",
       "r": "project_panel::Rename",
-      "o": "project_panel::Open"
+      "o": "project_panel::Open",
+      "q": "workspace::ToggleRightDock"
     }
   },
   {
