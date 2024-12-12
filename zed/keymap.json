@@ -2,7 +2,8 @@
   {
     "context": "EmptyPane || SharedScreen",
     "bindings": {
-      "space space": "file_finder::Toggle"
+      "space space": "file_finder::Toggle",
+      "ctrl-g": ["task::Spawn", { "task_name": "Lazygit" }]
     }
   },
   {
@@ -23,8 +24,8 @@
       "cmd-shift-h": "pane::SwapItemLeft",
       "cmd-shift-l": "pane::SwapItemRight",
 
-      // "space e": ["task::Spawn", { "task_name": "yazi current" }],
-      // "space E": ["task::Spawn", { "task_name": "yazi root" }],
+      "space e": ["task::Spawn", { "task_name": "yazi current" }],
+      "space E": ["task::Spawn", { "task_name": "yazi root" }],
       "space f": ["task::Spawn", { "task_name": "search:project" }],
 
       "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
@@ -47,9 +48,10 @@
     }
   },
   {
-    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "context": "Editor && VimControl && !VimWaiting && !menu",
     "bindings": {
       "space space": "file_finder::Toggle",
+      "ctrl-g": ["task::Spawn", { "task_name": "Lazygit" }],
 
       // space code actions
       "space c a": "editor::ToggleCodeActions",
@@ -57,25 +59,22 @@
       // space find actions
       "ctrl-t": "tab_switcher::Toggle",
       "space f": ["task::Spawn", { "task_name": "search:project" }],
+      "spact t": "task::Spawn",
       // git
       "space g d": "editor::ToggleHunkDiff",
       "space g r": "editor::RevertSelectedHunks",
 
       "space s": "outline::Toggle",
       "space S": "project_symbols::Toggle",
-      "space t": "task::Spawn",
-      "space e": "pane::RevealInProjectPanel",
 
       "shift-h": "pane::ActivatePrevItem",
       "shift-l": "pane::ActivateNextItem",
       // go to mode
       "g r": "editor::FindAllReferences",
-      "g d": "editor::GoToDefinitionSplit",
-      "g D": "editor::GoToTypeDefinitionSplit",
-      "g h": "editor::GoToHunk",
-      "g H": "editor::GoToPrevHunk",
-      "ctrl-w g d": "editor::GoToDefinition",
-      "ctrl-w g D": "editor::GoToTypeDefinition",
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDefinitionSplit",
+      "g t": "editor::GoToTypeDefinition",
+      "g T": "editor::GoToTypeDefinitionSplit",
 
       "] d": "editor::GoToDiagnostic",
       "[ d": "editor::GoToPrevDiagnostic",
@@ -131,18 +130,12 @@
     }
   },
   {
-    "context": "Editor && mode == full",
-    "bindings": {
-      "ctrl-g": ["task::Spawn", { "task_name": "Lazygit" }]
-    }
-  },
-  {
     "context": "Dock",
     "bindings": {
-      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
+      "ctrl-w h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-w l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-w k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-w j": ["workspace::ActivatePaneInDirection", "Down"]
     }
   }
 ]
