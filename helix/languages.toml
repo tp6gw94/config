@@ -1,47 +1,162 @@
-[language-server]
-deno = { command = "deno", args = ["lsp"] }
+[language-server.scls]
+command = "simple-completion-language-server"
+
+[language-server.scls.config]
+max_completion_items = 20    # set max completion results len for each group: words, snippets, unicode-input
+snippets_first = true        # completions will return before snippets by default
+feature_words = true         # enable completion by word
+feature_snippets = true      # enable snippets
+feature_unicode_input = true # enable "unicode input"
+feature_paths = true         # enable path completion
+
+[[sources]] # list of sources to load
+name = "friendly-snippets"                                  # optional name shown on snippet description
+git = "https://github.com/rafamadriz/friendly-snippets.git" # git repo with snippets collections
+
+[language-server.typos]
+command = "typos-lsp"
+config.diagnosticSeverity = "Warning"
+
+[language-server.vtsls]
+args = ["--stdio"]
+command = "vtsls"
+
+[language-server.eslint]
+args = ["--stdio"]
+command = "vscode-eslint-language-server"
+
+[language-server.eslint.config]
+problems = { shortenToSingleLine = false }
+nodePath = ""
+format = { enable = true }
+quiet = false
+rulesCustomizations = []
+run = "onType"
+validate = "on"
+codeAction = { disableRuleComment = { enable = true, location = "separateLine" }, showDocumentation = { enable = false } }
+codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
+experimental = {}
+workingDirectories = [{ mode = "auto" }]
 
 [language-server.typescript-language-server]
-command = "typescript-language-server"
-args = ["--stdio"]
-config.hostInfo = "helix"
+required-root-patterns = ["package.json", "tsconfig.json"]
 
 [language-server.typescript-language-server.config.typescript.inlayHints]
 includeInlayEnumMemberValueHints = true
 includeInlayFunctionLikeReturnTypeHints = false
 includeInlayFunctionParameterTypeHints = false
-includeInlayParameterNameHints = "literals"
+includeInlayParameterNameHints = "all"
 includeInlayParameterNameHintsWhenArgumentMatchesName = true
 includeInlayPropertyDeclarationTypeHints = false
 includeInlayVariableTypeHints = false
-
-[[language]]
-name = "html"
-auto-format = true
-language-servers = ["vscode-html-language-server"]
-formatter = { command = "prettier", args = ["--parser", "html"] }
+includeInlayVariableTypeHintsWhenTypeMatchesName = true
 
 [[language]]
 name = "typescript"
+language-servers = [
+  "typescript-language-server",
+  "eslint",
+  "scls",
+  "typos"
+]
+roots = ["package.json", "tsconfig.json", ".git"]
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
-language-servers = ["typescript-language-server", "vscode-eslint-language-server", "graphql-language-service"]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
 
 [[language]]
 name = "javascript"
+language-servers = [
+  "typescript-language-server",
+  "eslint",
+  "scls",
+  "typos"
+]
+roots = ["package.json", "tsconfig.json"]
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
-language-servers = ["typescript-language-server", "vscode-eslint-language-server", "graphql-language-service"]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
 
 [[language]]
 name = "tsx"
+language-servers = [
+  "typescript-language-server",
+  "eslint",
+  "scls",
+  "typos"
+]
+roots = ["package.json", "tsconfig.json", ".git"]
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
-language-servers = ["typescript-language-server", "vscode-eslint-language-server", "graphql-language-service"]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
 
 [[language]]
 name = "jsx"
+language-servers = [
+  "typescript-language-server",
+  "eslint",
+  "scls",
+  "typos"
+]
+roots = ["package.json", "tsconfig.json"]
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
-language-servers = ["typescript-language-server", "vscode-eslint-language-server", "graphql-language-service"]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
+
+[[language]]
+name = "json"
+language-servers = ["vscode-json-language-server"]
+formatter = { command = 'npx', args = ["prettier", "--parser", "json"] }
+auto-format = true
+
+[[language]]
+name = "lua"
+auto-format = true
+
+[language-server.vscode-json-language-server.config]
+json = { validate = { enable = true }, format = { enable = true } }
+provideFormatter = true
+
+[language-server.vscode-css-language-server.config]
+css = { validate = { enable = true } }
+scss = { validate = { enable = true } }
+less = { validate = { enable = true } }
+provideFormatter = true
+
+[[language]]
+name = "html"
+formatter = { command = 'npx', args = ["prettier", "--parser", "html"] }
+language-servers = [
+  "vscode-html-language-server",
+]
+auto-format = true
+
+[[language]]
+name = "css"
+formatter = { command = 'npx', args = ["prettier", "--parser", "css"] }
+language-servers = [
+  "vscode-css-language-server",
+]
+auto-format = true
+
+[[language]]
+name = "scss"
+formatter = { command = "npx", args = ["prettier", "--parser", "scss"] }
+language-servers = ["vscode-css-language-server"]
+
+[[language]]
+name = "python"
+language-servers = ["pylsp"]
+roots = [".git"]
+workspace-lsp-roots = ["src/updater"]
+auto-format = true
+
+[language-server.pylsp.config.pylsp.plugins]
+flake8 = { enabled = false, ignore = ["E501"] }
+autopep8 = { enabled = false }
+mccabe = { enabled = false }
+pycodestyle = { enabled = false }
+pyflakes = { enabled = false }
+pylint = { enabled = false }
+yapf = { enabled = false }
+ruff = {  enabled = true, ignore = ["F401"], lineLength = 120 }
