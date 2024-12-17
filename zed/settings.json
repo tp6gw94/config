@@ -31,7 +31,7 @@
     "git_status": true,
     "file_icons": true
   },
-  "theme": "Catppuccin Latte",
+  "theme": "Tokyo Night",
   "terminal": {
     "option_as_meta": true
   },

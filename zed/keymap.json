@@ -3,7 +3,8 @@
     "context": "EmptyPane || SharedScreen",
     "bindings": {
       "space space": "file_finder::Toggle",
-      "ctrl-g": ["task::Spawn", { "task_name": "Lazygit" }]
+      "ctrl-g": ["task::Spawn", { "task_name": "Lazygit" }],
+      "space e": "pane::RevealInProjectPanel"
     }
   },
   {
@@ -24,8 +25,8 @@
       "cmd-shift-h": "pane::SwapItemLeft",
       "cmd-shift-l": "pane::SwapItemRight",
 
-      "space e": ["task::Spawn", { "task_name": "yazi current" }],
-      "space E": ["task::Spawn", { "task_name": "yazi root" }],
+      // "space e": ["task::Spawn", { "task_name": "yazi current" }],
+      // "space E": ["task::Spawn", { "task_name": "yazi root" }],
       "space f": ["task::Spawn", { "task_name": "search:project" }],
 
       "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
@@ -35,7 +36,7 @@
     }
   },
   {
-    "context": "vim_mode == visual",
+    "context": "Editor && vim_mode == visual",
     "bindings": {
       "shift-k": "editor::MoveLineUp",
       "shift-j": "editor::MoveLineDown"
@@ -52,6 +53,7 @@
     "bindings": {
       "space space": "file_finder::Toggle",
       "ctrl-g": ["task::Spawn", { "task_name": "Lazygit" }],
+      "space e": "pane::RevealInProjectPanel",
 
       // space code actions
       "space c a": "editor::ToggleCodeActions",
@@ -75,6 +77,11 @@
       "g D": "editor::GoToDefinitionSplit",
       "g t": "editor::GoToTypeDefinition",
       "g T": "editor::GoToTypeDefinitionSplit",
+      "g l": "vim::EndOfLineDownward",
+      "g h": "vim::StartOfLineDownward",
+
+      "g n": "vim::SelectNext",
+      "g shift-n": "vim::SelectPrevious",
 
       "] d": "editor::GoToDiagnostic",
       "[ d": "editor::GoToPrevDiagnostic",
