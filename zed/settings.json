@@ -7,6 +7,11 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "indent_aware",
+    "background_coloring": "indent_aware"
+  },
   "assistant": {
     "default_model": {
       "provider": "copilot_chat",
@@ -21,7 +26,10 @@
   "ui_font_size": 14,
   "ui_font_weight": 600,
   "project_panel": {
-    "dock": "right"
+    "dock": "right",
+    "indent_guides": {
+      "show": "always"
+    }
   },
   "tab_bar": {
     "show": true,
@@ -31,7 +39,7 @@
     "git_status": true,
     "file_icons": true
   },
-  "theme": "Tokyo Night",
+  "theme": "Tokyo Night Storm",
   "terminal": {
     "option_as_meta": true
   },

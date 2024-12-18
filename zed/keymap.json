@@ -45,7 +45,9 @@
   {
     "context": "vim_mode == insert",
     "bindings": {
-      "j k": "vim::NormalBefore"
+      "j j": "vim::NormalBefore",
+      "k k": "vim::NormalBefore",
+      "cmd-i": "editor::ShowSignatureHelp"
     }
   },
   {
@@ -61,7 +63,7 @@
       // space find actions
       "ctrl-t": "tab_switcher::Toggle",
       "space f": ["task::Spawn", { "task_name": "search:project" }],
-      "spact t": "task::Spawn",
+      "space t": "task::Spawn",
       // git
       "space g d": "editor::ToggleHunkDiff",
       "space g r": "editor::RevertSelectedHunks",
@@ -82,11 +84,16 @@
 
       "g n": "vim::SelectNext",
       "g shift-n": "vim::SelectPrevious",
+      "g m": "vim::MoveToNext",
+      "g shift-m": "vim::MoveToPrev",
 
       "] d": "editor::GoToDiagnostic",
       "[ d": "editor::GoToPrevDiagnostic",
       "] h": "editor::GoToHunk",
-      "[ h": "editor::GoToPrevHunk"
+      "[ h": "editor::GoToPrevHunk",
+
+      "Q": ["pane::CloseActiveItem", { "saveIntent": "skip" }],
+      "q": ["pane::CloseActiveItem", { "saveIntent": "save" }]
     }
   },
   {
