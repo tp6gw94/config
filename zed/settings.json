@@ -29,7 +29,8 @@
     "dock": "right",
     "indent_guides": {
       "show": "always"
-    }
+    },
+    "show_diagnostics": "all"
   },
   "tab_bar": {
     "show": true,
@@ -37,9 +38,10 @@
   },
   "tabs": {
     "git_status": true,
-    "file_icons": true
+    "file_icons": true,
+    "show_diagnostics": "all"
   },
-  "theme": "Tokyo Night Storm",
+  "theme": "Github Light High Contrast",
   "terminal": {
     "option_as_meta": true
   },

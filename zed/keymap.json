@@ -3,7 +3,7 @@
     "context": "EmptyPane || SharedScreen",
     "bindings": {
       "space space": "file_finder::Toggle",
-      "ctrl-g": ["task::Spawn", { "task_name": "Lazygit" }],
+      "ctrl-g": ["task::Spawn", { "task_name": "Lazygit", "target": "center" }],
       "space e": "pane::RevealInProjectPanel"
     }
   },
@@ -27,7 +27,10 @@
 
       // "space e": ["task::Spawn", { "task_name": "yazi current" }],
       // "space E": ["task::Spawn", { "task_name": "yazi root" }],
-      "space f": ["task::Spawn", { "task_name": "search:project" }],
+      "space f": [
+        "task::Spawn",
+        { "task_name": "search:project", "target": "center" }
+      ],
 
       "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
       "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
@@ -45,8 +48,7 @@
   {
     "context": "vim_mode == insert",
     "bindings": {
-      "j j": "vim::NormalBefore",
-      "k k": "vim::NormalBefore",
+      "j k": "vim::NormalBefore",
       "cmd-i": "editor::ShowSignatureHelp"
     }
   },
@@ -54,7 +56,7 @@
     "context": "Editor && VimControl && !VimWaiting && !menu",
     "bindings": {
       "space space": "file_finder::Toggle",
-      "ctrl-g": ["task::Spawn", { "task_name": "Lazygit" }],
+      "ctrl-g": ["task::Spawn", { "task_name": "Lazygit", "target": "center" }],
       "space e": "pane::RevealInProjectPanel",
 
       // space code actions
@@ -62,7 +64,10 @@
       "space c r": "editor::Rename",
       // space find actions
       "ctrl-t": "tab_switcher::Toggle",
-      "space f": ["task::Spawn", { "task_name": "search:project" }],
+      "space f": [
+        "task::Spawn",
+        { "task_name": "search:project", "target": "center" }
+      ],
       "space t": "task::Spawn",
       // git
       "space g d": "editor::ToggleHunkDiff",
@@ -90,10 +95,7 @@
       "] d": "editor::GoToDiagnostic",
       "[ d": "editor::GoToPrevDiagnostic",
       "] h": "editor::GoToHunk",
-      "[ h": "editor::GoToPrevHunk",
-
-      "Q": ["pane::CloseActiveItem", { "saveIntent": "skip" }],
-      "q": ["pane::CloseActiveItem", { "saveIntent": "save" }]
+      "[ h": "editor::GoToPrevHunk"
     }
   },
   {
@@ -128,7 +130,12 @@
       "d": "project_panel::Delete",
       "r": "project_panel::Rename",
       "o": "project_panel::Open",
-      "q": "workspace::ToggleRightDock"
+      "q": "workspace::ToggleRightDock",
+      "h": "project_panel::CollapseSelectedEntry",
+      "l": "project_panel::ExpandSelectedEntry",
+      "x": "project_panel::Cut",
+      "c": "project_panel::Copy",
+      "p": "project_panel::Paste"
     }
   },
   {
