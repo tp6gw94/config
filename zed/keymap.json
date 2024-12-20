@@ -4,7 +4,9 @@
     "bindings": {
       "space space": "file_finder::Toggle",
       "ctrl-g": ["task::Spawn", { "task_name": "Lazygit", "target": "center" }],
-      "space e": "pane::RevealInProjectPanel"
+      // "space e": "pane::RevealInProjectPanel"
+      "space e": ["task::Spawn", { "task_name": "yazi current" }],
+      "space E": ["task::Spawn", { "task_name": "yazi root" }]
     }
   },
   {
@@ -25,12 +27,12 @@
       "cmd-shift-h": "pane::SwapItemLeft",
       "cmd-shift-l": "pane::SwapItemRight",
 
-      // "space e": ["task::Spawn", { "task_name": "yazi current" }],
-      // "space E": ["task::Spawn", { "task_name": "yazi root" }],
-      "space f": [
-        "task::Spawn",
-        { "task_name": "search:project", "target": "center" }
-      ],
+      "space e": ["task::Spawn", { "task_name": "yazi current" }],
+      "space E": ["task::Spawn", { "task_name": "yazi root" }],
+      // "space f": [
+      //   "task::Spawn",
+      //   { "task_name": "search:project", "target": "center" }
+      // ],
 
       "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
       "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
@@ -57,17 +59,19 @@
     "bindings": {
       "space space": "file_finder::Toggle",
       "ctrl-g": ["task::Spawn", { "task_name": "Lazygit", "target": "center" }],
-      "space e": "pane::RevealInProjectPanel",
+      // "space e": "pane::RevealInProjectPanel",
+      "space e": ["task::Spawn", { "task_name": "yazi current" }],
+      "space E": ["task::Spawn", { "task_name": "yazi root" }],
 
       // space code actions
       "space c a": "editor::ToggleCodeActions",
       "space c r": "editor::Rename",
       // space find actions
       "ctrl-t": "tab_switcher::Toggle",
-      "space f": [
-        "task::Spawn",
-        { "task_name": "search:project", "target": "center" }
-      ],
+      // "space f": [
+      //   "task::Spawn",
+      //   { "task_name": "search:project", "target": "center" }
+      // ],
       "space t": "task::Spawn",
       // git
       "space g d": "editor::ToggleHunkDiff",
@@ -157,6 +161,15 @@
       "ctrl-w l": ["workspace::ActivatePaneInDirection", "Right"],
       "ctrl-w k": ["workspace::ActivatePaneInDirection", "Up"],
       "ctrl-w j": ["workspace::ActivatePaneInDirection", "Down"]
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "alt-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "alt-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "alt-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "alt-j": ["workspace::ActivatePaneInDirection", "Down"]
     }
   }
 ]
