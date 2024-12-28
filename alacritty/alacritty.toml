@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/tokyo-night.toml"]
+import = ["~/.config/alacritty/catppuccin-latte.toml"]
 live_config_reload = true
 
 [env]
