@@ -13,6 +13,9 @@ feature_paths = true         # enable path completion
 name = "friendly-snippets"                                  # optional name shown on snippet description
 git = "https://github.com/rafamadriz/friendly-snippets.git" # git repo with snippets collections
 
+[language-server.gpt]
+command = "helix-gpt"
+
 [language-server.typos]
 command = "typos-lsp"
 config.diagnosticSeverity = "Warning"
@@ -20,6 +23,10 @@ config.diagnosticSeverity = "Warning"
 [language-server.vtsls]
 args = ["--stdio"]
 command = "vtsls"
+
+[language-server.tailwindcss-ls]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
 
 [language-server.eslint]
 args = ["--stdio"]
@@ -57,7 +64,8 @@ language-servers = [
   "typescript-language-server",
   "eslint",
   "scls",
-  "typos"
+  "typos",
+  "gpt"
 ]
 roots = ["package.json", "tsconfig.json", ".git"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
@@ -70,7 +78,8 @@ language-servers = [
   "typescript-language-server",
   "eslint",
   "scls",
-  "typos"
+  "typos",
+  "gpt"
 ]
 roots = ["package.json", "tsconfig.json"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
@@ -83,7 +92,9 @@ language-servers = [
   "typescript-language-server",
   "eslint",
   "scls",
-  "typos"
+  "typos",
+  "gpt",
+  "tailwindcss-ls"
 ]
 roots = ["package.json", "tsconfig.json", ".git"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
@@ -96,7 +107,9 @@ language-servers = [
   "typescript-language-server",
   "eslint",
   "scls",
-  "typos"
+  "typos",
+  "gpt",
+  "tailwindcss-ls"
 ]
 roots = ["package.json", "tsconfig.json"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
@@ -128,6 +141,7 @@ name = "html"
 formatter = { command = 'npx', args = ["prettier", "--parser", "html"] }
 language-servers = [
   "vscode-html-language-server",
+  "tailwindcss-ls"
 ]
 auto-format = true
 
@@ -152,11 +166,14 @@ workspace-lsp-roots = ["src/updater"]
 auto-format = true
 
 [language-server.pylsp.config.pylsp.plugins]
+black = { enabled = true }
+isort = { enabled = true }
+rope_autoimport = { enabled = true }
+pylint = { enabled = true }
 flake8 = { enabled = false, ignore = ["E501"] }
 autopep8 = { enabled = false }
 mccabe = { enabled = false }
 pycodestyle = { enabled = false }
 pyflakes = { enabled = false }
-pylint = { enabled = false }
 yapf = { enabled = false }
 ruff = {  enabled = true, ignore = ["F401"], lineLength = 120 }
