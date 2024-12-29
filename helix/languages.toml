@@ -160,7 +160,7 @@ language-servers = ["vscode-css-language-server"]
 
 [[language]]
 name = "python"
-language-servers = ["pylsp"]
+language-servers = ["pylsp", "typos", "gpt"]
 roots = [".git"]
 workspace-lsp-roots = ["src/updater"]
 auto-format = true

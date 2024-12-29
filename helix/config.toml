@@ -68,6 +68,11 @@ a = ":buffer-close-all"
 o = ":buffer-close-others"
 r = ":rla"
 
+# goto
+[keys.normal.g]
+D = ["vsplit", "jump_view_left", "goto_definition", "swap_view_right"]
+Y = ["vsplit", "jump_view_left", "goto_type_definition", "swap_view_right"]
+
 [keys.select]
 "{" = ["goto_prev_paragraph"]
 "}" = ["goto_next_paragraph"]
