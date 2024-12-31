@@ -14,7 +14,7 @@ enable = true
 
 [editor.statusline]
 left = ["mode", "version-control", "spinner"]
-center = ["file-base-name"]
+center = ["file-name"]
 right = ["register"]
 
 [editor.lsp]

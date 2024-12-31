@@ -120,7 +120,7 @@ auto-format = true
 name = "json"
 language-servers = ["vscode-json-language-server"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "json"] }
-auto-format = true
+auto-format = false
 
 [[language]]
 name = "lua"
