@@ -1,27 +1,6 @@
 simplified_ui true
 theme "tokyo-night"
 
-keybinds {
-    normal {
-        bind "Ctrl a" { SwitchToMode "tmux"; }
-    }
-
-    tmux {
-        bind "l" { MoveFocus "Right"; SwitchToMode "locked"; }
-        bind "h" { MoveFocus "Left"; SwitchToMode "locked"; }
-        bind "k" { MoveFocus "Up"; SwitchToMode "locked"; }
-        bind "j" { MoveFocus "Down"; SwitchToMode "locked"; }
-        bind "z" { ToggleFocusFullscreen; SwitchToMode "locked"; }
-        bind "x" { CloseFocus; SwitchToMode "locked"; }
-        bind "t" { NewTab; SwitchToMode "locked"; }
-        bind "q" { CloseTab; SwitchToMode "locked"; }
-    }
-
-    locked {
-        bind "Ctrl a" { SwitchToMode "tmux"; }
-    }
-}
-
 themes {
     tokyo-night-light {
         fg 52 59 88
