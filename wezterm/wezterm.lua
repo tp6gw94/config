@@ -4,6 +4,8 @@ local config = {}
 config.color_scheme = 'One Light (base16)'
 config.font = wezterm.font 'JetBrains Mono'
 
+config.window_decorations = "RESIZE"
+
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1500 }
 config.keys = {
   -- pane split
