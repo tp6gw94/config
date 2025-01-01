@@ -26,7 +26,7 @@ config.keys = {
   {
     key = 'h',
     mods = 'LEADER',
-    action = wezterm.action.ActivatePaneDirection 'Left' 
+    action = wezterm.action.ActivatePaneDirection 'Left'
   },
   {
     key = 'j',
@@ -36,7 +36,7 @@ config.keys = {
   {
     key = 'k',
     mods = 'LEADER',
-    action = wezterm.action.ActivatePaneDirection 'Up' 
+    action = wezterm.action.ActivatePaneDirection 'Up'
   },
   {
     key = 'l',
@@ -77,7 +77,7 @@ config.keys = {
     action = wezterm.action.ReloadConfiguration
   },
   -- tab
-  {  
+  {
     key = 'r',
     mods = 'LEADER',
     action = wezterm.action.PromptInputLine {
@@ -87,20 +87,30 @@ config.keys = {
           window:active_tab():set_title(line)
         end
       end),
-    } 
+    }
   },
   {
     key = 't',
     mods = 'LEADER',
     action = wezterm.action.SpawnCommandInNewTab {
       cwd = wezterm.home_dir
-    }     
+    }
   },
   -- close tab
   {
     key = 'q',
     mods = 'LEADER',
     action = wezterm.action.CloseCurrentTab { confirm = true }
+  },
+  {
+    key = "LeftArrow",
+    mods = "OPT",
+    action = wezterm.action { SendString = "\x1bb" }
+  },
+  {
+    key = "RightArrow",
+    mods = "OPT",
+    action = wezterm.action { SendString = "\x1bf" }
   }
 }
 

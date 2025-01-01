@@ -52,13 +52,15 @@ c = "toggle_comments"
 C = "toggle_block_comments"
 
 [keys.normal.space]
-e = ":sh zellij run -fc -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh open"
-g = ":sh zellij run -fc -x 10% -y 10% --width 80% --height 80% -- lazygit"
+# e = ":sh zellij run -fc -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh open"
+# g = ":sh zellij run -fc -x 10% -y 10% --width 80% --height 80% -- lazygit"
+g = [":sh wezterm cli split-pane --right -- lazygit"]
+e = [":sh helix_pane=$WEZTERM_PANE wezterm cli split-pane --right -- ~/.config/helix/wezterm-yazi.sh open"]
 
 [keys.normal.space.c]
 r = "rename_symbol"
 a = "code_action"
-l = [":sh zellij run -fc -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/eslint-fix.sh", ":rl"]
+l = [':sh wezterm cli split-pane --bottom -- ~/.config/helix/eslint-fix.sh']
 
 # buffer
 [keys.normal.space.b]
