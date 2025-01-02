@@ -5,6 +5,7 @@ config.color_scheme = 'One Light (base16)'
 config.font = wezterm.font 'JetBrains Mono'
 
 config.window_decorations = "RESIZE"
+config.hide_tab_bar_if_only_one_tab = true
 
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1500 }
 config.keys = {
