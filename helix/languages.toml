@@ -2,16 +2,12 @@
 command = "simple-completion-language-server"
 
 [language-server.scls.config]
-max_completion_items = 20    # set max completion results len for each group: words, snippets, unicode-input
+max_completion_items = 100    # set max completion results len for each group: words, snippets, unicode-input
 snippets_first = true        # completions will return before snippets by default
 feature_words = true         # enable completion by word
 feature_snippets = true      # enable snippets
 feature_unicode_input = true # enable "unicode input"
 feature_paths = true         # enable path completion
-
-[[sources]] # list of sources to load
-name = "friendly-snippets"                                  # optional name shown on snippet description
-git = "https://github.com/rafamadriz/friendly-snippets.git" # git repo with snippets collections
 
 [language-server.gpt]
 command = "helix-gpt"
@@ -24,6 +20,18 @@ config.diagnosticSeverity = "Warning"
 args = ["--stdio"]
 command = "vtsls"
 
+[language-server.vtsls.config.typescript.preferences]
+importModuleSpecifier = "non-relative"
+
+[language-server.vtsls.config.typescript.inlayHints]
+parameterNames = { enabled = "all", suppressWhenArgumentMatchesName = false }
+parameterTypes = { enabled = true }
+variableTypes = { enabled = false, suppressWhenTypeMatchesName = true }
+propertyDeclarationTypes = { enabled = true }
+functionLikeReturnTypes = { enabled = false }
+enumMemberValues = { enabled = false }
+
+
 [language-server.tailwindcss-ls]
 command = "tailwindcss-language-server"
 args = ["--stdio"]
@@ -33,20 +41,35 @@ args = ["--stdio"]
 command = "vscode-eslint-language-server"
 
 [language-server.eslint.config]
-problems = { shortenToSingleLine = false }
-nodePath = ""
-format = { enable = true }
-quiet = false
-rulesCustomizations = []
-run = "onType"
-validate = "on"
-codeAction = { disableRuleComment = { enable = true, location = "separateLine" }, showDocumentation = { enable = false } }
-codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
-experimental = {}
-workingDirectories = [{ mode = "auto" }]
+validate = "on" 
+experimental = { useFlatConfig = false } 
+rulesCustomizations = [] 
+run = "onType" 
+problems = { shortenToSingleLine = false } 
+nodePath = "" 
+
+[language-server.eslint.config.codeAction]
+[language-server.eslint.config.codeAction.disableRuleComment]
+enable = true
+location = "separateLine"
+
+[language-server.eslint.config.codeAction.showDocumentation]
+enable = true
+
+[language-server.eslint.config.codeActionOnSave]
+enable = true
+mode = "fixAll"
+
+[language-server.eslint.config.workingDirectory]
+mode = "location"
+
 
 [language-server.typescript-language-server]
-required-root-patterns = ["package.json", "tsconfig.json"]
+required-root-patterns = ["package.json"]
+documentFormatting = false
+
+[language-server.typescript-language-server.config.pereferences]
+importModuleSpecifier = "non-relative"
 
 [language-server.typescript-language-server.config.typescript.inlayHints]
 includeInlayEnumMemberValueHints = true
@@ -61,11 +84,9 @@ includeInlayVariableTypeHintsWhenTypeMatchesName = true
 [[language]]
 name = "typescript"
 language-servers = [
-  "typescript-language-server",
+  "vtsls",
   "eslint",
-  "scls",
   "typos",
-  "gpt"
 ]
 roots = ["package.json", "tsconfig.json", ".git"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
@@ -75,11 +96,9 @@ auto-format = true
 [[language]]
 name = "javascript"
 language-servers = [
-  "typescript-language-server",
+  "vtsls",
   "eslint",
-  "scls",
   "typos",
-  "gpt"
 ]
 roots = ["package.json", "tsconfig.json"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
@@ -89,11 +108,9 @@ auto-format = true
 [[language]]
 name = "tsx"
 language-servers = [
-  "typescript-language-server",
+  "vtsls",
   "eslint",
-  "scls",
   "typos",
-  "gpt",
   "tailwindcss-ls"
 ]
 roots = ["package.json", "tsconfig.json", ".git"]
@@ -104,11 +121,9 @@ auto-format = true
 [[language]]
 name = "jsx"
 language-servers = [
-  "typescript-language-server",
+  "vtsls",
   "eslint",
-  "scls",
   "typos",
-  "gpt",
   "tailwindcss-ls"
 ]
 roots = ["package.json", "tsconfig.json"]
@@ -119,8 +134,8 @@ auto-format = true
 [[language]]
 name = "json"
 language-servers = ["vscode-json-language-server"]
-formatter = { command = 'npx', args = ["prettier", "--parser", "json"] }
-auto-format = false
+formatter = { command = 'npx', args = ["prettier", "--parser", "json", "--single-quote", "false"] }
+auto-format = true
 
 [[language]]
 name = "lua"
@@ -160,7 +175,7 @@ language-servers = ["vscode-css-language-server"]
 
 [[language]]
 name = "python"
-language-servers = ["pylsp", "typos", "gpt"]
+language-servers = ["pylsp", "typos"]
 roots = [".git"]
 workspace-lsp-roots = ["src/updater"]
 auto-format = true

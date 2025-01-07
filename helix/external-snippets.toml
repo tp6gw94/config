@@ -1,0 +1,20 @@
+[[sources]]
+name = "friendly-snippets"
+git = "https://github.com/rafamadriz/friendly-snippets.git"
+
+[[sources.paths]]
+scope = ["javascript", "jsx", "js"]
+path = "snippets/javascript/javascript.json"
+
+[[sources.paths]]
+scope = ["typescript", "tsx", "ts"]
+path = "snippets/javascript/typescript.json"
+
+
+[[sources.paths]]
+scope = ["typescript", "tsx", "ts"]
+path = "snippets/javascript/react-ts.json"
+
+[[sources.paths]]
+scope = ["javascript", "jsx", "js"]
+path = "snippets/javascript/react.json"
