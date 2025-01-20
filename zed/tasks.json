@@ -8,14 +8,16 @@
     "command": "lazygit",
     "hide": "on_success",
     "allow_concurrent_runs": true,
-    "reveal": "always"
+    "reveal": "always",
+    "reveal_target": "center"
   },
   {
     "label": "yazi current",
     "command": "yazi $ZED_FILE",
     "hide": "on_success",
     "allow_concurrent_runs": true,
-    "reveal": "always"
+    "reveal": "always",
+    "reveal_target": "center"
   },
   {
     "label": "yazi root",

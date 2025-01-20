@@ -3,7 +3,7 @@
     "context": "EmptyPane || SharedScreen",
     "bindings": {
       "space space": "file_finder::Toggle",
-      "ctrl-g": ["task::Spawn", { "task_name": "Lazygit", "target": "center" }],
+      "ctrl-g": ["task::Spawn", { "task_name": "Lazygit" }],
       // "space e": "pane::RevealInProjectPanel"
       "space e": ["task::Spawn", { "task_name": "yazi current" }],
       "space E": ["task::Spawn", { "task_name": "yazi root" }]
@@ -58,7 +58,7 @@
     "context": "Editor && VimControl && !VimWaiting && !menu",
     "bindings": {
       "space space": "file_finder::Toggle",
-      "ctrl-g": ["task::Spawn", { "task_name": "Lazygit", "target": "center" }],
+      "ctrl-g": ["task::Spawn", { "task_name": "Lazygit" }],
       // "space e": "pane::RevealInProjectPanel",
       "space e": ["task::Spawn", { "task_name": "yazi current" }],
       "space E": ["task::Spawn", { "task_name": "yazi root" }],
