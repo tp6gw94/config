@@ -44,6 +44,11 @@ esc = ["collapse_selection", "keep_primary_selection"]
 "p" = ["paste_clipboard_after"]
 "P" = ["paste_clipboard_before"]
 Cmd-s = ":write"
+d = ["yank_to_clipboard", "delete_selection"]
+
+[keys.select]
+y = ["yank", "yank_to_clipboard"]
+d = ["yank_to_clipboard", "delete_selection"]
 
 [keys.insert]
 "j" = { k = "normal_mode" }
@@ -79,7 +84,3 @@ r = ":rla"
 [keys.normal.g]
 D = ["vsplit", "jump_view_left", "goto_definition", "swap_view_right"]
 Y = ["vsplit", "jump_view_left", "goto_type_definition", "swap_view_right"]
-
-[keys.select]
-"{" = ["goto_prev_paragraph"]
-"}" = ["goto_next_paragraph"]
