@@ -6,7 +6,9 @@
       "ctrl-g": ["task::Spawn", { "task_name": "Lazygit" }],
       // "space e": "pane::RevealInProjectPanel"
       "space e": ["task::Spawn", { "task_name": "yazi current" }],
-      "space E": ["task::Spawn", { "task_name": "yazi root" }]
+      "space E": ["task::Spawn", { "task_name": "yazi root" }],
+      "space f f": ["task::Spawn", { "task_name": "File Finder" }],
+      "space f w": ["task::Spawn", { "task_name": "Find in Files" }]
     }
   },
   {
@@ -68,10 +70,8 @@
       "space c r": "editor::Rename",
       // space find actions
       "ctrl-t": "tab_switcher::Toggle",
-      // "space f": [
-      //   "task::Spawn",
-      //   { "task_name": "search:project", "target": "center" }
-      // ],
+      "space f f": ["task::Spawn", { "task_name": "File Finder" }],
+      "space f w": ["task::Spawn", { "task_name": "Find in Files" }],
       "space t": "task::Spawn",
       // git
       "space g d": "editor::ToggleHunkDiff",
