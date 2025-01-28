@@ -1,11 +1,9 @@
 # Amazon Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 source "$HOME/.local/share/zap/zap.zsh"
-source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
 
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-autosuggestions"
@@ -22,8 +20,7 @@ export PATH="$PATH:/usr/local/bin"
 export PATH="$HOME/.config/lsp:$PATH"
 export HELIX_RUNTIME="$HOME/.config/helix/helix/runtime"
 export XDG_CONFIG_HOME="$HOME/.config"
-export EDITOR="zed --wait"
-
+export EDITOR="nvim"
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
@@ -39,6 +36,8 @@ alias lg="lazygit"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+
+eval "$(starship init zsh)"
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
