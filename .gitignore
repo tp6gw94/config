@@ -2,3 +2,4 @@
 .DS_Store
 /zed/embeddings
 /zed/prompts
+/helix/runtime
