@@ -3,8 +3,8 @@ gui:
   showIcons: true
 os:
   open: "open {{filename}}"
-  editPreset: "zed"
-confirmOnQuit: true
+  editPreset: "nvim"
+confirmOnQuit: false
 customCommands:
   - key: "w"
     prompts:
