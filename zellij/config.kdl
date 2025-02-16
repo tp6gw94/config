@@ -1,5 +1,32 @@
-simplified_ui true
+simplified_ui false
+pane_frames false
 theme "tokyo-night"
+
+
+keybinds {
+  locked {
+    bind "Alt l" { MoveFocus "Right"; }
+    bind "Alt h" { MoveFocus "Left"; }
+    bind "Alt j" { MoveFocus "Down"; }
+    bind "Alt k" { MoveFocus "Up"; }
+    bind "Alt ]" { MoveTab "Right"; }
+    bind "Alt [" { MoveTab "Left"; }
+  }
+  normal {
+    unbind "Ctrl h"
+    bind "Ctrl m" { SwitchToMode "move"; }
+    bind "Ctrl r" { SwitchToMode "resize"; }
+  }
+  pane {
+    unbind "n"
+    bind "|" { NewPane "Right"; SwitchToMode "locked"; }
+    bind "_" { NewPane "Down"; SwitchToMode "locked"; }
+  }
+  tab {
+    bind "<" { MoveTab "Left"; }
+    bind ">" { MoveTab "Right"; }
+  }
+}
 
 themes {
     tokyo-night-light {
