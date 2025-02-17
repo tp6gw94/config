@@ -28,6 +28,7 @@ export PATH="$PNPM_HOME:$PATH"
 
 alias pn="pnpm"
 alias lg="lazygit"
+alias ld="lazydocker"
 
 # bun completions
 [ -s "/Users/chenshengtai/.bun/_bun" ] && source "/Users/chenshengtai/.bun/_bun"
