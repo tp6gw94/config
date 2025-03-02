@@ -5,5 +5,8 @@ local map = vim.keymap.set
 
 map({ "n", "v" }, "gh", "_", { noremap = true })
 map({ "n", "v" }, "gl", "$", { noremap = true })
+map({ "n" }, "<C-q>", function()
+  Snacks.bufdelete()
+end, { desc = "Delete Buffer" })
 
 map("i", "jk", "<ESC>", { noremap = true })
