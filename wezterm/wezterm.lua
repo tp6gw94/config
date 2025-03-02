@@ -1,8 +1,12 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
+local builtin_schemes = wezterm.color.get_builtin_schemes()
 
 local light_scheme = "One Light (base16)"
+local light_scheme_def = builtin_schemes[light_scheme]
 local dark_scheme = "One Dark (base16)"
+local dark_scheme_def = builtin_schemes[dark_scheme]
+
 wezterm.on("toggle-color-scheme", function(window, pane)
 	local overrides = window:get_config_overrides() or {}
 	if overrides.color_scheme == light_scheme then
@@ -10,15 +14,41 @@ wezterm.on("toggle-color-scheme", function(window, pane)
 	else
 		overrides.color_scheme = light_scheme
 	end
+
 	window:set_config_overrides(overrides)
 end)
 
-config.color_scheme = "One Light (base16)"
+config.window_padding = {
+	left = 5,
+	right = 5,
+	top = 5,
+	bottom = 5,
+}
+config.adjust_window_size_when_changing_font_size = false
+
+config.color_scheme = light_scheme
+config.colors = {
+	tab_bar = {
+		background = "rgba(0,0,0,0)",
+		active_tab = {
+			bg_color = light_scheme_def.background,
+			fg_color = light_scheme_def.foreground,
+		},
+		inactive_tab = {
+			bg_color = light_scheme_def.foreground,
+			fg_color = light_scheme_def.background,
+		},
+	},
+}
 config.font = wezterm.font("JetBrains Mono")
 
 config.window_decorations = "TITLE | RESIZE"
+
 config.hide_tab_bar_if_only_one_tab = false
 config.tab_bar_at_bottom = true
+config.tab_max_width = 20
+config.show_new_tab_button_in_tab_bar = false
+config.use_fancy_tab_bar = false
 
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1500 }
 
@@ -42,26 +72,6 @@ config.keys = {
 		action = act.TogglePaneZoomState,
 	},
 	-- pane move
-	{
-		key = "h",
-		mods = "LEADER",
-		action = act.ActivatePaneDirection("Left"),
-	},
-	{
-		key = "j",
-		mods = "LEADER",
-		action = act.ActivatePaneDirection("Down"),
-	},
-	{
-		key = "k",
-		mods = "LEADER",
-		action = act.ActivatePaneDirection("Up"),
-	},
-	{
-		key = "l",
-		mods = "LEADER",
-		action = act.ActivatePaneDirection("Right"),
-	},
 	{
 		key = "p",
 		mods = "LEADER",
@@ -126,18 +136,27 @@ config.keys = {
 		}),
 	},
 	{
-		key = "]",
+		key = "}",
 		mods = "LEADER",
 		action = act.MoveTabRelative(1),
 	},
 	{
-		key = "[",
+		key = "{",
 		mods = "LEADER",
 		action = act.MoveTabRelative(-1),
 	},
-	-- close tab
 	{
-		key = "q",
+		key = "]",
+		mods = "LEADER",
+		action = act.ActivateTabRelative(1),
+	},
+	{
+		key = "[",
+		mods = "LEADER",
+		action = act.ActivateTabRelative(-1),
+	},
+	{
+		key = "X",
 		mods = "LEADER",
 		action = act.CloseCurrentTab({ confirm = true }),
 	},
@@ -190,7 +209,7 @@ config.keys = {
 		}),
 	},
 	{
-		key = "s",
+		key = "w",
 		mods = "LEADER",
 		action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
 	},
@@ -206,7 +225,7 @@ for i = 1, 9 do
 	-- CTRL+ALT + number to activate that tab
 	table.insert(config.keys, {
 		key = tostring(i),
-		mods = "LEADER",
+		mods = "ALT",
 		action = act.ActivateTab(i - 1),
 	})
 end
