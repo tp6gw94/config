@@ -7,3 +7,4 @@ rsync -a ./zed ~/.config
 rsync -a ./nvim ~/.config
 rsync -a ./wezterm ~/.config
 rsync -a ./lazygit ~/.config
+rsync -a ./slide-themes ~/.config
