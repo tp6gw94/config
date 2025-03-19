@@ -8,6 +8,13 @@ map({ "n", "v" }, "gl", "$", { noremap = true })
 map({ "n" }, "<C-q>", function()
   Snacks.bufdelete()
 end, { desc = "Delete Buffer" })
+
 Snacks.toggle.zoom():map("<leader>Z")
 Snacks.toggle.zen():map("<leader>z")
+
 map("i", "jk", "<ESC>", { noremap = true })
+
+map("c", "<C-h>", "<Left>", { noremap = true })
+map("c", "<C-j>", "<Down>", { noremap = true })
+map("c", "<C-k>", "<Up>", { noremap = true })
+map("c", "<C-l>", "<Right>", { noremap = true })
