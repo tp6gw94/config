@@ -27,6 +27,7 @@ export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
 alias pn="pnpm"
+alias v="nvim"
 alias lg="lazygit"
 alias ld="lazydocker"
 
