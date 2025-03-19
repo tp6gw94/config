@@ -7,7 +7,7 @@ snippets_first = true        # completions will return before snippets by defaul
 feature_words = true         # enable completion by word
 feature_snippets = true      # enable snippets
 feature_unicode_input = true # enable "unicode input"
-feature_paths = true         # enable path completion
+feature_paths = false        # enable path completion
 
 [[sources]] # list of sources to load
 name = "friendly-snippets"                                  # optional name shown on snippet description
@@ -20,7 +20,6 @@ config.diagnosticSeverity = "Warning"
 [language-server.tailwindcss-ls]
 args = ["--stdio"]
 command = "tailwindcss-language-server"
-experimental.capabilities.textDocumentSync = 1
 
 [language-server.eslint]
 args = ["--stdio"]
@@ -54,12 +53,7 @@ includeInlayVariableTypeHintsWhenTypeMatchesName = true
 
 [[language]]
 name = "typescript"
-language-servers = [
-  "typescript-language-server",
-  "eslint",
-  "scls",
-  "typos",
-]
+language-servers = ["typescript-language-server", "eslint", "scls", "typos"]
 roots = ["package.json", "tsconfig.json", ".git"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
@@ -67,12 +61,7 @@ auto-format = true
 
 [[language]]
 name = "javascript"
-language-servers = [
-  "typescript-language-server",
-  "eslint",
-  "scls",
-  "typos",
-]
+language-servers = ["typescript-language-server", "eslint", "scls", "typos"]
 roots = ["package.json", "tsconfig.json"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
@@ -85,7 +74,7 @@ language-servers = [
   "eslint",
   "scls",
   "typos",
-  "tailwindcss-ls"
+  "tailwindcss-ls",
 ]
 roots = ["package.json", "tsconfig.json", ".git"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
@@ -99,7 +88,7 @@ language-servers = [
   "eslint",
   "scls",
   "typos",
-  "tailwindcss-ls"
+  "tailwindcss-ls",
 ]
 roots = ["package.json", "tsconfig.json"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
@@ -129,18 +118,13 @@ provideFormatter = true
 [[language]]
 name = "html"
 formatter = { command = 'npx', args = ["prettier", "--parser", "html"] }
-language-servers = [
-  "vscode-html-language-server",
-  "tailwindcss-ls"
-]
+language-servers = ["vscode-html-language-server", "tailwindcss-ls"]
 auto-format = true
 
 [[language]]
 name = "css"
 formatter = { command = 'npx', args = ["prettier", "--parser", "css"] }
-language-servers = [
-  "vscode-css-language-server",
-]
+language-servers = ["vscode-css-language-server"]
 auto-format = true
 
 [[language]]
@@ -166,4 +150,4 @@ mccabe = { enabled = false }
 pycodestyle = { enabled = false }
 pyflakes = { enabled = false }
 yapf = { enabled = false }
-ruff = {  enabled = true, ignore = ["F401"], lineLength = 120 }
+ruff = { enabled = true, ignore = ["F401"], lineLength = 120 }
