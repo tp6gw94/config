@@ -30,11 +30,6 @@ vim.keymap.set({ 'n', 'v' }, 'gs', '_', { noremap = true, desc = '[G]o to first 
 vim.keymap.set({ 'n', 'v' }, 'gh', '0', { noremap = true, desc = '[G]o to line start' })
 vim.keymap.set({ 'n', 'v' }, 'gl', 'g_', { noremap = true, desc = '[G]o to line end word' })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
