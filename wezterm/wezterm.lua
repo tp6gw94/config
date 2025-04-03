@@ -219,10 +219,15 @@ config.keys = {
 		mods = "LEADER",
 		action = wezterm.action.ShowDebugOverlay,
 	},
+	{
+		key = "y",
+		mods = "LEADER",
+		action = wezterm.action.ActivateCopyMode
+	}
 }
 
 for i = 1, 9 do
-	-- CTRL+ALT + number to activate that tab
+	-- ALT + number to activate that tab
 	table.insert(config.keys, {
 		key = tostring(i),
 		mods = "ALT",
