@@ -124,13 +124,14 @@ auto-format = true
 [[language]]
 name = "css"
 formatter = { command = 'npx', args = ["prettier", "--parser", "css"] }
-language-servers = ["vscode-css-language-server"]
+language-servers = ["vscode-css-language-server", "tailwindcss-ls"]
 auto-format = true
 
 [[language]]
 name = "scss"
 formatter = { command = "npx", args = ["prettier", "--parser", "scss"] }
-language-servers = ["vscode-css-language-server"]
+language-servers = ["vscode-css-language-server", "tailwindcss-ls"]
+auto-format = true
 
 [[language]]
 name = "python"

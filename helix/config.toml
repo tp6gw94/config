@@ -1,4 +1,4 @@
-theme = "onelight"
+theme = "github_light_colorblind"
 
 [editor]
 scrolloff = 8
@@ -14,7 +14,7 @@ enable = true
 
 [editor.statusline]
 left = ["mode", "version-control", "spinner"]
-center = ["file-name"]
+center = ["file-base-name"]
 right = ["register"]
 
 [editor.lsp]
@@ -40,12 +40,20 @@ esc = ["collapse_selection", "keep_primary_selection"]
 "K" = ["hover"]
 "H" = "goto_previous_buffer"
 "L" = "goto_next_buffer"
-
+"C-space" = "expand_selection"
+"C-g" = [
+  ":write-all",
+  ":new",
+  ":insert-output lazygit",
+  ":buffer-close!",
+  ":redraw",
+  ":reload-all"
+]
 
 [keys.insert]
 "j" = { k = "normal_mode" }
 "C-space" = "completion"
-"C-x" = "signature_help"
+"A-i" = "signature_help"
 
 [keys.normal.g.c]
 c = "toggle_comments"
@@ -84,6 +92,3 @@ r = ":rla"
 D = ["vsplit", "jump_view_left", "goto_definition", "swap_view_right"]
 Y = ["vsplit", "jump_view_left", "goto_type_definition", "swap_view_right"]
 
-[keys.select]
-"{" = ["goto_prev_paragraph"]
-"}" = ["goto_next_paragraph"]
