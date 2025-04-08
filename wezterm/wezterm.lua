@@ -160,6 +160,11 @@ config.keys = {
 		mods = "LEADER",
 		action = act.CloseCurrentTab({ confirm = true }),
 	},
+	{
+		key = "-",
+		mods = "LEADER",
+		action = act.ShowTabNavigator,
+	},
 	-- move cursor by word
 	{
 		key = "LeftArrow",
@@ -222,8 +227,8 @@ config.keys = {
 	{
 		key = "y",
 		mods = "LEADER",
-		action = wezterm.action.ActivateCopyMode
-	}
+		action = wezterm.action.ActivateCopyMode,
+	},
 }
 
 for i = 1, 9 do
