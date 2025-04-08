@@ -28,7 +28,7 @@ return {
     },
     keys = {
       { '<leader>e', mode = { 'n', 'v' }, '<cmd>Yazi<cr>', desc = 'Explore current file' },
-      { '<leader>E', mode = { 'n', 'v' }, '<cmd>Yazi<cr>', desc = 'Explore workspace' },
+      { '<leader>E', mode = { 'n', 'v' }, '<cmd>Yazi cwd<cr>', desc = 'Explore workspace' },
     },
   },
 }

@@ -53,6 +53,22 @@ return {
     config = function()
       require('avante_lib').load()
       require('avante').setup()
+
+      vim.api.nvim_set_hl(0, 'AvanteConflictCurrent', { bg = '#fcdd92', bold = true })
+      vim.api.nvim_set_hl(0, 'AvanteConflictIncoming', { bg = '#f59393', bold = true })
     end,
+  },
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = true,
+      },
+    },
   },
 }

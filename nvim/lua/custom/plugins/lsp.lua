@@ -14,7 +14,7 @@ return {
   },
   {
     'saghen/blink.cmp',
-    dependencies = { 'rafamadriz/friendly-snippets', 'Kaiser-Yang/blink-cmp-avante' },
+    dependencies = { 'rafamadriz/friendly-snippets', 'Kaiser-Yang/blink-cmp-avante', 'fang2hou/blink-copilot' },
 
     -- use a release tag to download pre-built binaries
     version = '1.*',
@@ -52,7 +52,7 @@ return {
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'avante' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'avante', 'copilot' },
         providers = {
           lazydev = {
             name = 'LazyDev',
@@ -63,6 +63,12 @@ return {
           avante = {
             module = 'blink-cmp-avante',
             name = 'Avante',
+          },
+          copilot = {
+            name = 'copilot',
+            module = 'blink-copilot',
+            score_offset = 100,
+            async = true,
           },
         },
       },
@@ -122,6 +128,17 @@ return {
             willRename = true,
           },
         },
+      },
+      setup = {
+        eslint = function()
+          require('lazyvim.util').lsp.on_attach(function(client)
+            if client.name == 'eslint' then
+              client.server_capabilities.documentFormattingProvider = true
+            elseif client.name == 'tsserver' then
+              client.server_capabilities.documentFormattingProvider = false
+            end
+          end)
+        end,
       },
     },
     config = function(_, opts)
@@ -219,6 +236,13 @@ return {
         ts_ls = {
           enabled = false,
         },
+        eslint = {
+          settings = {
+            -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
+            workingDirectories = { mode = 'auto' },
+            format = true,
+          },
+        },
         vtsls = {
           filetypes = {
             'javascript',
@@ -297,6 +321,15 @@ return {
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+
+            if server_name == 'eslint' then
+              vim.api.nvim_create_autocmd('BufWritePre', {
+                pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
+                command = 'silent! EslintFixAll',
+                group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
+              })
+            end
+
             require('lspconfig')[server_name].setup(server)
           end,
         },
@@ -464,6 +497,31 @@ return {
         group = vim.api.nvim_create_augroup('nvim-lint', { clear = true }),
         callback = M.debounce(100, M.lint),
       })
+    end,
+  },
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+    config = function()
+      require('conform').setup {
+        format_on_save = {
+          -- These options will be passed to conform.format()
+          timeout_ms = 500,
+          lsp_format = 'fallback',
+        },
+        formatters_by_ft = {
+          lua = { 'stylua' },
+          -- Conform will run multiple formatters sequentially
+          python = { 'isort', 'black' },
+          -- You can customize some of the format options for the filetype (:help conform.format)
+          rust = { 'rustfmt', lsp_format = 'fallback' },
+          -- Conform will run the first available formatter
+          javascript = { 'prettierd', 'prettier', stop_after_first = true },
+          javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+          typescript = { 'prettierd', 'prettier', stop_after_first = true },
+          typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        },
+      }
     end,
   },
 }

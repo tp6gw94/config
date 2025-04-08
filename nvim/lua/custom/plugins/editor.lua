@@ -46,13 +46,9 @@ return {
     },
     keys = {
       {
-        '<leader>p',
+        '<leader>P',
         function()
-          if LazyVim.pick.picker.name == 'telescope' then
-            require('telescope').extensions.yank_history.yank_history {}
-          else
-            vim.cmd [[YankyRingHistory]]
-          end
+          vim.cmd [[YankyRingHistory]]
         end,
         mode = { 'n', 'x' },
         desc = 'Open Yank History',
@@ -127,5 +123,22 @@ return {
       --   If not available, we use `mini` as the fallback
       'rcarriga/nvim-notify',
     },
+  },
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      local harpoon = require 'harpoon'
+      harpoon.setup()
+      
+      -- stylua: ignore start
+      vim.keymap.set('n', '<leader>m', function() harpoon:list():add() end, {desc = "Add File to Harpoon"})
+      vim.keymap.set('n', '<C-e>', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = 'Harpoon Menu' })
+      vim.keymap.set('n', '<leader>1', function() harpoon:list():select(1) end, {desc = 'Select Harpoon 1'})
+      vim.keymap.set('n', '<leader>2', function() harpoon:list():select(2) end, {desc = 'Select Harpoon 2'})
+      vim.keymap.set('n', '<leader>3', function() harpoon:list():select(3) end, {desc = 'Select Harpoon 3'})
+      vim.keymap.set('n', '<leader>4', function() harpoon:list():select(4) end, {desc = 'Select Harpoon 4'})
+    end,
   },
 }
