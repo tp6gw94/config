@@ -27,7 +27,7 @@ export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
 alias pn="pnpm"
-alias v="nvim"
+alias n="nvim"
 alias lg="lazygit"
 alias ld="lazydocker"
 
@@ -37,6 +37,15 @@ alias ld="lazydocker"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+            builtin cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+}
 
 
 eval "$(starship init zsh)"
