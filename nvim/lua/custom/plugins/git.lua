@@ -1,6 +1,7 @@
 return {
   {
     'sindrets/diffview.nvim',
+    event = 'VeryLazy',
     keys = {
       { '<leader>gdf', '<cmd>DiffviewFileHistory %<cr>', desc = 'Git Diff Current File' },
       { '<leader>gdb', '<cmd>DiffviewFileHistory<cr>', desc = 'Git Diff Branch' },
@@ -25,6 +26,8 @@ return {
         topdelete = { text = '' },
         changedelete = { text = '▎' },
       },
+      current_line_blame = true,
+
       on_attach = function()
         local gs = package.loaded.gitsigns
 
@@ -54,6 +57,10 @@ return {
         map('n', '<leader>ghB', function()
           gs.blame()
         end, 'Blame Buffer')
+        map('n', '<leader>ghr', gs.reset_hunk, 'Reset Hunk')
+        map('v', '<leader>hr', function()
+          gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
+        end)
       end,
     },
   },

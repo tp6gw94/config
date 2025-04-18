@@ -56,3 +56,6 @@ vim.keymap.set('n', '<leader>|', '<C-W>v', { desc = 'Split Window Right', remap 
 vim.keymap.set('n', '<leader>wd', '<C-W>c', { desc = 'Delete Window', remap = true })
 
 vim.api.nvim_set_keymap('v', '<leader>p', '"_dP', { noremap = true, silent = true, desc = 'Replace selection without yanking' })
+
+vim.keymap.set('n', '<A-n>', '<cmd>cnext<cr>', { desc = 'Next Quickfix' })
+vim.keymap.set('n', '<A-p>', '<cmd>cprev<cr>', { desc = 'Previous Quickfix' })

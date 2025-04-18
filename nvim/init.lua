@@ -55,6 +55,8 @@ require('lazy').setup {
         { '<leader>gh', group = '[G]it Hunk', mode = { 'n', 'x' } },
         { '<leader>s', group = '[S]earch', mode = { 'n', 'x' } },
         { '<leader>a', group = '[A]i', mode = { 'n', 'x' } },
+        { '<leader>m', group = '[M]ulti Cursor', mode = { 'n', 'x' } },
+        { '<leader>w', group = '[W]indow', mode = { 'n', 'x' } },
       },
     },
   },

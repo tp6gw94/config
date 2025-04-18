@@ -13,8 +13,30 @@ return {
     },
   },
   {
+    'L3MON4D3/LuaSnip',
+    version = 'v2.*',
+    build = 'make install_jsregexp',
+    dependencies = { 'rafamadriz/friendly-snippets' },
+    opts = {
+      history = true,
+      delete_check_events = 'TextChanged',
+      cut_selection_keys = '<Tab>',
+    },
+    config = function(_, opts)
+      local ls = require 'luasnip'
+      ls.setup(opts)
+
+      require('luasnip.loaders.from_vscode').lazy_load()
+      require('luasnip.loaders.from_lua').load { paths = { '~/.config/nvim/lua/custom/snippets' } }
+
+      ls.filetype_extend('typescript', { 'javascript' })
+      ls.filetype_extend('javascriptreact', { 'javascript' })
+      ls.filetype_extend('typescriptreact', { 'javascript' })
+    end,
+  },
+  {
     'saghen/blink.cmp',
-    dependencies = { 'rafamadriz/friendly-snippets', 'Kaiser-Yang/blink-cmp-avante', 'fang2hou/blink-copilot' },
+    dependencies = { 'rafamadriz/friendly-snippets', 'Kaiser-Yang/blink-cmp-avante', 'fang2hou/blink-copilot', { 'L3MON4D3/LuaSnip', version = 'v2.*' } },
 
     -- use a release tag to download pre-built binaries
     version = '1.*',
@@ -38,7 +60,19 @@ return {
       -- C-k: Toggle signature help (if signature.enabled = true)
       --
       -- See :h blink-cmp-config-keymap for defining your own keymap
-      keymap = { preset = 'default' },
+      keymap = {
+        preset = 'default',
+        ['<C-d>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        ['<C-s>'] = {
+          function(cmp)
+            cmp.show { providers = { 'snippets' } }
+          end,
+        },
+      },
+
+      signature = {
+        enabled = true,
+      },
 
       appearance = {
         -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -46,8 +80,9 @@ return {
         nerd_font_variant = 'mono',
       },
 
-      -- (Default) Only show the documentation popup when manually triggered
-      completion = { documentation = { auto_show = false } },
+      completion = { documentation = { auto_show = true }, ghost_text = { enabled = false } },
+
+      snippets = { preset = 'luasnip' },
 
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
@@ -79,6 +114,18 @@ return {
       --
       -- See the fuzzy documentation for more information
       fuzzy = { implementation = 'prefer_rust_with_warning' },
+
+      cmdline = {
+        keymap = {
+          preset = 'cmdline',
+          ['<Tab>'] = { 'show', 'accept' },
+        },
+        completion = { menu = {
+          auto_show = function()
+            return vim.fn.getcmdtype() == ':'
+          end,
+        } },
+      },
     },
     opts_extend = { 'sources.default' },
   },
@@ -105,18 +152,6 @@ return {
       { 'saghen/blink.cmp' },
     },
     opts = {
-      diagnostics = {
-        underline = true,
-        update_in_insert = false,
-        virtual_text = {
-          spacing = 4,
-          source = 'if_many',
-          prefix = '●',
-          -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
-          -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
-          -- prefix = "icons",
-        },
-      },
       inlay_hints = {
         enabled = true,
         exclude = { 'vue' }, -- filetypes for which you don't want to enable inlay hints
@@ -210,9 +245,25 @@ return {
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
         underline = { severity = vim.diagnostic.severity.ERROR },
+        -- virtual_lines = {
+        --   current_line = true,
+        --   format = function(diagnostic)
+        --     if diagnostic.severity ~= vim.diagnostic.severity.HINT then
+        --       return nil
+        --     end
+        --
+        --     local diagnostic_message = {
+        --       [vim.diagnostic.severity.ERROR] = diagnostic.message,
+        --       [vim.diagnostic.severity.WARN] = diagnostic.message,
+        --       [vim.diagnostic.severity.INFO] = diagnostic.message,
+        --       [vim.diagnostic.severity.HINT] = diagnostic.message,
+        --     }
+        --     return diagnostic_message[diagnostic.severity]
+        --   end,
+        -- },
         virtual_text = {
           source = 'if_many',
-          spacing = 2,
+          spacing = 4,
           format = function(diagnostic)
             local diagnostic_message = {
               [vim.diagnostic.severity.ERROR] = diagnostic.message,
@@ -303,6 +354,16 @@ return {
             diagnosticSeverity = 'Warning',
           },
         },
+        volar = {
+          init_options = {
+            typescript = {
+              tsdk = '~/.volta/tools/shared/typescript/lib',
+            },
+            vue = {
+              hybridMode = false,
+            },
+          },
+        },
       }
 
       local ensure_installed = vim.tbl_keys(servers or {})
@@ -337,46 +398,6 @@ return {
     end,
   },
   { 'roobert/tailwindcss-colorizer-cmp.nvim', opts = {} },
-  { -- Autoformat
-    'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
-    cmd = { 'ConformInfo' },
-    keys = {
-      {
-        '<leader>cf',
-        function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
-        end,
-        mode = '',
-        desc = '[F]ormat buffer',
-      },
-    },
-    opts = {
-      notify_on_error = false,
-      format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
-        if disable_filetypes[vim.bo[bufnr].filetype] then
-          return nil
-        else
-          return {
-            timeout_ms = 500,
-            lsp_format = 'fallback',
-          }
-        end
-      end,
-      formatters_by_ft = {
-        lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
-      },
-    },
-  },
   {
     -- diagnostics
     'folke/trouble.nvim',
@@ -398,17 +419,19 @@ return {
   },
   {
     'mfussenegger/nvim-lint',
+    enabled = true,
     opts = {
       -- Event to trigger linters
       events = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
       linters_by_ft = {
-        fish = { 'fish' },
-        javascript = { 'eslint' },
-        ['javascriptreact'] = { 'eslint' },
-        ['javascript.jsx'] = { 'eslint' },
-        typescript = { 'eslint' },
-        ['typescriptreact'] = { 'eslint' },
-        ['typescript.jsx'] = { 'eslint' },
+        -- fish = { 'fish' },
+        -- javascript = { 'eslint' },
+        -- ['javascriptreact'] = { 'eslint' },
+        -- ['javascript.jsx'] = { 'eslint' },
+        -- typescript = { 'eslint' },
+        -- ['typescriptreact'] = { 'eslint' },
+        -- ['typescript.jsx'] = { 'eslint' },
+        ['*'] = { 'cspell' },
 
         -- Use the "*" filetype to run linters on all filetypes.
         -- ['*'] = { 'global linter' },
@@ -482,7 +505,7 @@ return {
         names = vim.tbl_filter(function(name)
           local linter = lint.linters[name]
           if not linter then
-            LazyVim.warn('Linter not found: ' .. name, { title = 'nvim-lint' })
+            -- LazyVim.warn('Linter not found: ' .. name, { title = 'nvim-lint' })
           end
           return linter and not (type(linter) == 'table' and linter.condition and not linter.condition(ctx))
         end, names)
@@ -506,7 +529,7 @@ return {
       require('conform').setup {
         format_on_save = {
           -- These options will be passed to conform.format()
-          timeout_ms = 500,
+          timeout_ms = 1000,
           lsp_format = 'fallback',
         },
         formatters_by_ft = {
@@ -520,8 +543,13 @@ return {
           javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
           typescript = { 'prettierd', 'prettier', stop_after_first = true },
           typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+          vue = { 'prettierd', 'prettier', stop_after_first = true },
         },
       }
+
+      vim.keymap.set('n', '<leader>cf', function()
+        require('conform').format { async = true, lsp_format = 'fallback' }
+      end, { desc = '[F]ormat buffer' })
     end,
   },
 }
