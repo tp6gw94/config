@@ -2,9 +2,9 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local builtin_schemes = wezterm.color.get_builtin_schemes()
 
-local light_scheme = "One Light (base16)"
+local light_scheme = "zenbones"
 local light_scheme_def = builtin_schemes[light_scheme]
-local dark_scheme = "One Dark (base16)"
+local dark_scheme = "zenwritten_dark"
 local dark_scheme_def = builtin_schemes[dark_scheme]
 
 wezterm.on("toggle-color-scheme", function(window, pane)
@@ -176,7 +176,7 @@ config.keys = {
 		mods = "OPT",
 		action = wezterm.action({ SendString = "\x1bf" }),
 	},
-	-- togle light or dark theme
+	-- toggle light or dark theme
 	{
 		key = "m",
 		mods = "CMD",
@@ -232,10 +232,10 @@ config.keys = {
 }
 
 for i = 1, 9 do
-	-- ALT + number to activate that tab
+	-- LEADER + number to activate that tab
 	table.insert(config.keys, {
 		key = tostring(i),
-		mods = "ALT",
+		mods = "LEADER",
 		action = act.ActivateTab(i - 1),
 	})
 end
