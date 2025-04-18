@@ -1,0 +1,22 @@
+[plugin]
+deps = []
+
+[[flavor.deps]]
+use = "gosxrgxx/flexoki-light"
+rev = "9d53f85"
+hash = "4871da00f8c49c6ad3ba552652539199"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-latte"
+rev = "68326b4"
+hash = "5dffea1e87c50b18b8bb1599f6d4881a"
+
+[[flavor.deps]]
+use = "kalidyasin/yazi-flavors:tokyonight-day"
+rev = "92a09a6"
+hash = "f69f88b52743cadfaf2f1f77a54e4693"
+
+[[flavor.deps]]
+use = "kalidyasin/yazi-flavors:tokyonight-night"
+rev = "92a09a6"
+hash = "845c5ee33e147b1a57f48728e42600ee"
