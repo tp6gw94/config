@@ -47,16 +47,30 @@ require('lazy').setup {
       delay = 0,
       -- Document existing key chains
       spec = {
-        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-        { '<leader>b', group = '[B]uffer', mode = { 'n', 'x' } },
-        { '<leader>x', group = 'Trouble', mode = { 'n', 'x' } },
-        { '<leader>g', group = '[G]it', mode = { 'n', 'x' } },
-        { '<leader>gd', group = '[G]it Diff', mode = { 'n', 'x' } },
-        { '<leader>gh', group = '[G]it Hunk', mode = { 'n', 'x' } },
-        { '<leader>s', group = '[S]earch', mode = { 'n', 'x' } },
-        { '<leader>a', group = '[A]i', mode = { 'n', 'x' } },
-        { '<leader>m', group = '[M]ulti Cursor', mode = { 'n', 'x' } },
-        { '<leader>w', group = '[W]indow', mode = { 'n', 'x' } },
+        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' }, icon = '󰅩' },
+        { '<leader>cs', group = '[S]wap', mode = { 'n', 'x' }, icon = '' },
+        { '<leader>b', group = '[B]uffer', mode = { 'n', 'x' }, icon = '' },
+        { '<leader>x', group = 'Trouble', mode = { 'n', 'x' }, icon = '' },
+        { '<leader>g', group = '[G]it', mode = { 'n', 'x' }, icon = '' },
+        { '<leader>gd', group = '[G]it Diff', mode = { 'n', 'x' }, icon = '' },
+        { '<leader>gh', group = '[G]it Hunk', mode = { 'n', 'x' }, icon = '' },
+        { '<leader>s', group = '[S]earch', mode = { 'n', 'x' }, icon = '' },
+        { '<leader>a', group = '[A]i', mode = { 'n', 'x' }, icon = '' },
+        { '<leader>m', group = '[M]ulti Cursor', mode = { 'n', 'x' }, icon = '󰗧' },
+        { '<leader>w', group = '[W]indow', mode = { 'n', 'x' }, icon = '' },
+
+        { '<leader>h', icon = '󰰁' },
+        { '<leader>H', icon = '󰰁' },
+        { '<leader>E', icon = '' },
+
+        { '<leader>1', hidden = true },
+        { '<leader>2', hidden = true },
+        { '<leader>3', hidden = true },
+        { '<leader>4', hidden = true },
+        { '<leader>5', hidden = true },
+        { '<leader>6', hidden = true },
+        { '<leader>7', hidden = true },
+        { '<leader>8', hidden = true },
       },
     },
   },
@@ -103,11 +117,33 @@ require('lazy').setup {
   },
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    event = 'VeryLazy',
     enabled = true,
     config = function()
       require('nvim-treesitter.configs').setup {
         textobjects = {
+          swap = {
+            enable = true,
+            swap_next = {
+              ['<leader>csa'] = '@parameter.inner',
+            },
+            swap_previous = {
+              ['<leader>csA'] = '@parameter.inner',
+            },
+          },
+
+          select = {
+            enable = true,
+
+            lookahead = true,
+
+            keymaps = {
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['ac'] = '@class.outer',
+              ['ic'] = '@class.inner',
+            },
+          },
+
           move = {
             enable = true,
             goto_next_start = { [']f'] = '@function.outer', [']c'] = '@class.outer', [']a'] = '@parameter.inner' },

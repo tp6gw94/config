@@ -87,7 +87,8 @@ return {
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'avante', 'copilot' },
+        --'buffer'
+        default = { 'lsp', 'path', 'snippets', 'lazydev', 'avante', 'copilot' },
         providers = {
           lazydev = {
             name = 'LazyDev',
@@ -262,6 +263,7 @@ return {
         --   end,
         -- },
         virtual_text = {
+          current_line = true,
           source = 'if_many',
           spacing = 4,
           format = function(diagnostic)
@@ -286,6 +288,21 @@ return {
       local servers = {
         ts_ls = {
           enabled = false,
+        },
+        harper_ls = {
+          filetypes = {
+            '*',
+          },
+          settings = {
+            ['harper-ls'] = {
+              userDictPath = '~/.config/dict.txt',
+              linters = {
+                SentenceCapitalization = false,
+                SpellCheck = true,
+              },
+              diagnosticSeverity = 'hint',
+            },
+          },
         },
         eslint = {
           settings = {
@@ -351,7 +368,7 @@ return {
         },
         typos_lsp = {
           init_options = {
-            diagnosticSeverity = 'Warning',
+            diagnosticSeverity = vim.diagnostic.severity.HINT,
           },
         },
         volar = {
@@ -407,7 +424,6 @@ return {
     keys = {
       {'<leader>xx', '<cmd>Trouble diagnostics toggle<cr>',desc = 'Diagnostics (Trouble)'},
       {'<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'Buffer Diagnostics (Trouble)'},
-      {'<leader>cs', '<cmd>Trouble symbols toggle focus=false<cr>', desc = 'Symbols (Trouble)'},
       {'<leader>cl', '<cmd>Trouble lsp toggle focus=false win.position=right<cr>', desc = 'LSP Definitions / references / ... (Trouble)'},
       {'<leader>xL', '<cmd>Trouble loclist toggle<cr>', desc = 'Location List (Trouble)'},
       {'<leader>xQ', '<cmd>Trouble qflist toggle<cr>', desc = 'Quickfix List (Trouble)'},
@@ -419,7 +435,7 @@ return {
   },
   {
     'mfussenegger/nvim-lint',
-    enabled = true,
+    enabled = false,
     opts = {
       -- Event to trigger linters
       events = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
@@ -452,6 +468,37 @@ return {
         --   end,
         -- },
       },
+    },
+    {
+      'nvimtools/none-ls.nvim',
+      event = 'VeryLazy',
+      dependencies = { 'davidmh/cspell.nvim' },
+      opts = function(_, opts)
+        local cspell = require 'cspell'
+        opts.sources = opts.sources or {}
+        table.insert(
+          opts.sources,
+          cspell.diagnostics.with {
+            diagnostics_postprocess = function(diagnostic)
+              diagnostic.severity = vim.diagnostic.severity.HINT
+            end,
+          }
+        )
+        table.insert(opts.sources, cspell.code_actions)
+      end,
+      config = function()
+        local cspell = require 'cspell'
+        require('null-ls').setup {
+          sources = {
+            cspell.diagnostics.with {
+              diagnostics_postprocess = function(diagnostic)
+                diagnostic.severity = vim.diagnostic.severity.HINT
+              end,
+            },
+            cspell.code_actions,
+          },
+        }
+      end,
     },
     config = function(_, opts)
       local M = {}
