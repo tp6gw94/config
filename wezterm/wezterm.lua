@@ -2,9 +2,9 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local builtin_schemes = wezterm.color.get_builtin_schemes()
 
-local light_scheme = "zenbones"
+local light_scheme = "zenwritten_light"
 local light_scheme_def = builtin_schemes[light_scheme]
-local dark_scheme = "zenwritten_dark"
+local dark_scheme = "Kanagawa (Gogh)"
 local dark_scheme_def = builtin_schemes[dark_scheme]
 
 wezterm.on("toggle-color-scheme", function(window, pane)
@@ -18,11 +18,55 @@ wezterm.on("toggle-color-scheme", function(window, pane)
 	window:set_config_overrides(overrides)
 end)
 
+wezterm.on("update-right-status", function(window, pane)
+	local cwd = ""
+	local hostname = ""
+	local cwd_uri = pane:get_current_working_dir()
+	if cwd_uri then
+		if type(cwd_uri) == "userdata" then
+			cwd = cwd_uri.file_path
+			hostname = cwd_uri.host or wezterm.hostname()
+		end
+
+		local dot = hostname:find("[.]")
+		if dot then
+			hostname = hostname:sub(1, dot - 1)
+		end
+		if hostname == "" then
+			hostname = wezterm.hostname()
+		end
+	end
+
+	local workspace = wezterm.mux.get_active_workspace()
+	workspace = string.match(workspace, "[^/\\]+$")
+	wezterm.log_info("workspace: " .. workspace)
+
+	wezterm.log_info(wezterm.hostname())
+
+	window:set_right_status(wezterm.format({
+		{ Background = { Color = "#2C363C" } },
+		{ Foreground = { Color = "#F0EDEC" } },
+		{ Text = "  󰇄  " .. hostname .. " " },
+
+		{ Background = { Color = "#2C363C" } },
+		{ Foreground = { Color = "#F0EDEC" } },
+		{ Text = "    " .. cwd .. " " },
+
+		{ Background = { Color = "#2C363C" } },
+		{ Foreground = { Color = "#F0EDEC" } },
+		{ Text = "    " .. workspace .. " " },
+	}))
+end)
+
+wezterm.on("window-config-reloaded", function(window, pane)
+	window:toast_notification("wezterm", "configuration reloaded!", nil, 4000)
+end)
+
 config.window_padding = {
-	left = 5,
-	right = 5,
-	top = 5,
-	bottom = 5,
+	left = "0.5cell",
+	right = "0",
+	top = "0",
+	bottom = "0",
 }
 config.adjust_window_size_when_changing_font_size = false
 
@@ -33,19 +77,23 @@ config.colors = {
 		active_tab = {
 			bg_color = light_scheme_def.background,
 			fg_color = light_scheme_def.foreground,
+			intensity = "Bold",
 		},
 		inactive_tab = {
 			bg_color = light_scheme_def.foreground,
 			fg_color = light_scheme_def.background,
+			intensity = "Half",
 		},
 	},
 }
-config.font = wezterm.font("JetBrains Mono")
+config.font = wezterm.font_with_fallback({ "Zenbones Brainy", "JetBrains Mono", "Fira Code" })
+config.line_height = 1.3
+config.font_size = 12
 
-config.window_decorations = "TITLE | RESIZE"
+config.window_decorations = "RESIZE"
 
 config.hide_tab_bar_if_only_one_tab = false
-config.tab_bar_at_bottom = true
+config.tab_bar_at_bottom = false
 config.tab_max_width = 20
 config.show_new_tab_button_in_tab_bar = false
 config.use_fancy_tab_bar = false
