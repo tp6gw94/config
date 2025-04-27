@@ -3,14 +3,36 @@ return {
     'stevearc/oil.nvim',
     ---@module 'oil'
     ---@type oil.SetupOpts
-    opts = {},
+    opts = {
+      lsp_file_methods = {
+        autosave_name = true,
+      },
+      watch_for_changes = true,
+      keymaps = {
+        ['<A-h>'] = { 'actions.select', opts = { horizontal = true } },
+        ['<A-l'] = { 'actions.refresh' },
+        ['<C-h>'] = false,
+        ['<C-l>'] = false,
+      },
+      view_options = {
+        show_hidden = true,
+      },
+    },
     -- Optional dependencies
     dependencies = { { 'echasnovski/mini.icons', opts = {} } },
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
     -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
     lazy = false,
     keys = {
-      { '-', mode = { 'n' }, '<cmd>Oil<cr>', desc = 'Open parent directory' },
+      { '<leader>o', mode = { 'n' }, '<cmd>Oil<cr>', desc = 'Open parent directory' },
+      {
+        '<leader>O',
+        mode = { 'n' },
+        function()
+          require('oil').open(vim.fn.getcwd())
+        end,
+        desc = 'Open cwd',
+      },
     },
   },
   {

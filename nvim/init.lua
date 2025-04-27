@@ -60,17 +60,7 @@ require('lazy').setup {
         { '<leader>w', group = '[W]indow', mode = { 'n', 'x' }, icon = '' },
 
         { '<leader>h', icon = '󰰁' },
-        { '<leader>H', icon = '󰰁' },
         { '<leader>E', icon = '' },
-
-        { '<leader>1', hidden = true },
-        { '<leader>2', hidden = true },
-        { '<leader>3', hidden = true },
-        { '<leader>4', hidden = true },
-        { '<leader>5', hidden = true },
-        { '<leader>6', hidden = true },
-        { '<leader>7', hidden = true },
-        { '<leader>8', hidden = true },
       },
     },
   },
@@ -117,7 +107,7 @@ require('lazy').setup {
   },
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    enabled = true,
+    enabled = false,
     config = function()
       require('nvim-treesitter.configs').setup {
         textobjects = {

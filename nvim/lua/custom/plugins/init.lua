@@ -21,8 +21,9 @@ return {
     -- stylua: ignore
     keys = {
       -- Picker
-      {'<leader>f', function() Snacks.picker.files() end, desc = 'Find Files'},
-      {'<leader><space>', function() Snacks.picker.buffers() end, desc = 'Find Buffers'},
+      {'<leader>f', function() Snacks.picker.files({exclude = {'@mf-types'}}) end, desc = 'Find Files'},
+      {'<leader>F', function() Snacks.picker.files({hidden = true, ignored = true}) end},
+      -- {'<leader><space>', function() Snacks.picker.buffers() end, desc = 'Find Buffers'},
       {'<leader>:', function() Snacks.picker.command_history() end, desc = 'Command History'},
       {'<leader>n', function() Snacks.picker.notifications() end, desc = 'Notification History'}, 
       {"<leader>'", function() Snacks.picker.resume() end, desc = 'Resume Picker'},

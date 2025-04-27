@@ -25,6 +25,20 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.api.nvim_create_augroup('HarpoonQuickNav', { clear = true })
+
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'HarpoonQuickNav',
+  pattern = { 'harpoon' },
+  callback = function()
+    for i = 0, 9 do
+      vim.api.nvim_buf_set_keymap(0, 'n', tostring(i), "<cmd>lua require('harpoon'):list():select(" .. tostring(i) .. ')<cr>', { silent = true })
+    end
+
+    vim.api.nvim_buf_set_keymap(0, 'n', 'f', "<cmd>lua Snacks.picker.files({exclude = {'@mf-types'}})<cr>", { silent = true })
+  end,
+})
+
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'qf' },
   callback = function()

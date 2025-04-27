@@ -25,10 +25,9 @@ vim.keymap.set('c', '<C-j>', '<Down>', { noremap = true })
 vim.keymap.set('c', '<C-k>', '<Up>', { noremap = true })
 vim.keymap.set('c', '<C-l>', '<Right>', { noremap = true })
 
--- goto line
-vim.keymap.set({ 'n', 'v' }, 'gs', '_', { noremap = true, desc = '[G]o to first word [S]tart' })
-vim.keymap.set({ 'n', 'v' }, 'gh', '0', { noremap = true, desc = '[G]o to line start' })
-vim.keymap.set({ 'n', 'v' }, 'gl', 'g_', { noremap = true, desc = '[G]o to line end word' })
+-- goto
+vim.keymap.set({ 'n', 'v' }, 'gh', '_', { noremap = true, desc = '[G]o to word start' })
+vim.keymap.set({ 'n', 'v' }, 'gl', 'g_', { noremap = true, desc = '[G]o to word end' })
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -59,3 +58,5 @@ vim.api.nvim_set_keymap('v', '<leader>p', '"_dP', { noremap = true, silent = tru
 
 vim.keymap.set('n', '<A-n>', '<cmd>cnext<cr>', { desc = 'Next Quickfix' })
 vim.keymap.set('n', '<A-p>', '<cmd>cprev<cr>', { desc = 'Previous Quickfix' })
+
+vim.keymap.set('n', 'ycc', 'yygccp', { remap = true, desc = 'Duplicate line and comment the first line' })
