@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>name</key>
+  <string>zenbones light</string>
+  <key>settings</key>
+  <array>
+    <dict>
+      <key>settings</key>
+      <dict>
+        <key>background</key>
+        <string>#F0EDEC</string>
+        <key>foreground</key>
+        <string>#2C363C</string>
+        <key>caret</key>
+        <string>#2C363C</string>
+        <key>lineHighlight</key>
+        <string>#E9E4E2</string>
+        <key>selection</key>
+        <string>#CBD9E3</string>
+        <key>invisibles</key>
+        <string>#BBABA3</string>
+        <key>guide</key>
+        <string>#A4968F</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Comment</string>
+      <key>scope</key>
+      <string>comment</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#948985</string>
+        <key>fontStyle</key>
+        <string>italic</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Keyword</string>
+      <key>scope</key>
+      <string>keyword, storage</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#2C363C</string>
+        <key>fontStyle</key>
+        <string>bold</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Constant</string>
+      <key>scope</key>
+      <string>constant, string, character</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#556570</string>
+        <key>fontStyle</key>
+        <string>italic</string>
+      </dict>
+    </dict>
+
+    <dict>
+      <key>name</key>
+      <string>Function</string>
+      <key>scope</key>
+      <string>entity.name.function</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#2C363C</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Variable</string>
+      <key>scope</key>
+      <string>variable, identifier</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#44525B</string>
+      </dict>
+    </dict>
+
+    <dict>
+      <key>name</key>
+      <string>Search Highlight</string>
+      <key>scope</key>
+      <string>markup.highlight, search</string>
+      <key>settings</key>
+      <dict>
+        <key>background</key>
+        <string>#DEB9D6</string>
+        <key>foreground</key>
+        <string>#2C363C</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Error</string>
+      <key>scope</key>
+      <string>invalid, error</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#A8334C</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Warning</string>
+      <key>scope</key>
+      <string>warning</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#944927</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Info</string>
+      <key>scope</key>
+      <string>info</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#286486</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Hint</string>
+      <key>scope</key>
+      <string>hint</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#88507D</string>
+      </dict>
+    </dict>
+  </array>
+</dict>
+</plist>

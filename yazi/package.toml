@@ -20,3 +20,13 @@ hash = "f69f88b52743cadfaf2f1f77a54e4693"
 use = "kalidyasin/yazi-flavors:tokyonight-night"
 rev = "92a09a6"
 hash = "845c5ee33e147b1a57f48728e42600ee"
+
+[[flavor.deps]]
+use = "muratoffalex/kanagawa-lotus"
+rev = "d84d61a"
+hash = "eef7cfa41fe51c19628d28cf453e967d"
+
+[[flavor.deps]]
+use = "tp6gw94/zenbones-light"
+rev = "dccd245"
+hash = "d266a173b11426784a1b6260d8322102"
