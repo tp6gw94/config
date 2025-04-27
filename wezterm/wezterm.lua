@@ -21,10 +21,11 @@ end)
 wezterm.on("update-right-status", function(window, pane)
 	local cwd = ""
 	local hostname = ""
+	local home = os.getenv("HOME")
 	local cwd_uri = pane:get_current_working_dir()
 	if cwd_uri then
 		if type(cwd_uri) == "userdata" then
-			cwd = cwd_uri.file_path
+			cwd = string.gsub(cwd_uri.file_path, home, "~", 1)
 			hostname = cwd_uri.host or wezterm.hostname()
 		end
 
@@ -86,8 +87,8 @@ config.colors = {
 		},
 	},
 }
-config.font = wezterm.font_with_fallback({ "Zenbones Brainy", "JetBrains Mono", "Fira Code" })
-config.line_height = 1.3
+config.font = wezterm.font_with_fallback({ "Maple Mono NF CN", "JetBrains Mono", "Fira Code" })
+config.line_height = 1.2
 config.font_size = 12
 
 config.window_decorations = "RESIZE"
