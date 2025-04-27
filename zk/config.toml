@@ -1,0 +1,70 @@
+[notebook]
+dir = "~/zk"
+
+[group.work]
+path = "work"
+
+paths = ["journal"]
+[group.daily]
+
+[group.daily.note]
+filename = "{{format-date now '%Y-%m-%d'}}"
+extension = "md"
+template = "daily.md"
+
+[group.inbox]
+
+[group.inbox.note]
+extension = "md"
+template = "inbox.md"
+
+[group.project]
+
+[group.project.note]
+extension = "md"
+template = "project.md"
+
+[group.project.extra]
+topic = "Topic"
+
+[group.area]
+
+[group.area.note]
+extension = "md"
+template = "area.md"
+
+[group.area.extra]
+topic = "Topic"
+
+[group.resource]
+
+[group.resource.note]
+extension = "md"
+template = "resource.md"
+
+[group.resource.extra]
+topic = "Topic"
+
+[tool]
+fzf-preview = "bat -p --theme base16-256 --color always {-1}"
+fzf-line = "{{style 'blue' title-or-path}}{{#each tags}} #{{this}}{{/each}} {{style 'understate' raw-content}}"
+
+[alias]
+e = "zk edit --interactive"
+ls = "zk list $@"
+ni = 'zk new --group inbox'
+np = 'zk new --group project --extra topic="$@"'
+na = 'zk new --group area --extra topic="$@"'
+nr = 'zk new --group resource --extra topic="$@"'
+nw = 'zk new --no-input "$ZK_NOTEBOOK_DIR/work"'
+
+daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal"'
+
+ff = 'zk list --match-strategy fts --match "$@"'
+fp = 'zk list --tag P-$@'
+fa = 'zk list --tag A-$@'
+fr = 'zk list --tag R-$@'
+fx = 'zk list --tag X-$@'
+re = 'zk list --match-strategy re --match "$@"'
+
+rm = "zk list --interactive --quiet --format path --delimiter0 $argv | xargs -0 rm -vf --"

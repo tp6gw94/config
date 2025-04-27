@@ -88,7 +88,7 @@ config.colors = {
 	},
 }
 config.font = wezterm.font_with_fallback({ "Maple Mono NF CN", "JetBrains Mono", "Fira Code" })
-config.line_height = 1.2
+config.line_height = 1
 config.font_size = 12
 
 config.window_decorations = "RESIZE"

@@ -25,7 +25,7 @@ return {
       {'<leader>F', function() Snacks.picker.files({hidden = true, ignored = true}) end},
       -- {'<leader><space>', function() Snacks.picker.buffers() end, desc = 'Find Buffers'},
       {'<leader>:', function() Snacks.picker.command_history() end, desc = 'Command History'},
-      {'<leader>n', function() Snacks.picker.notifications() end, desc = 'Notification History'}, 
+      {'<leader>N', function() Snacks.picker.notifications() end, desc = 'Notification History'}, 
       {"<leader>'", function() Snacks.picker.resume() end, desc = 'Resume Picker'},
       {'<leader>sq', function() Snacks.picker.qflist() end, desc = 'Quickfix List'},
       -- Grep
@@ -48,7 +48,7 @@ return {
       {'<leader>bo',function() Snacks.bufdelete.other() end, desc = 'Buffer Delete Other'},
       {'<leader>ba',function() Snacks.bufdelete.all() end, desc = 'Buffer Delete All'},
       -- UI
-      {'<leader>z',function() Snacks.zen() end, desc = 'Toggle Zen'},
+      -- {'<leader>z',function() Snacks.zen() end, desc = 'Toggle Zen'},
       {'<leader>Z',function() Snacks.zen.zoom() end, desc = 'Toggle Zoom'},
       -- Git
       {'<leader>gg',function() Snacks.lazygit() end, desc = 'Lazygit'},
