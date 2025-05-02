@@ -9,6 +9,8 @@ rsync -a wezterm config
 rsync -a nvim config
 rsync -a slide-themes config
 rsync -a zk config
+rsync -a aerospace config
+rsync -a borders config
 cp starship.toml config
 cp ./sync.sh config
 cp ./install.sh config

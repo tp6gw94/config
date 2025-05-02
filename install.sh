@@ -10,3 +10,7 @@ curl https://get.volta.sh | bash
 volta install node
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+brew install --cask nikitabobko/tap/aerospace
+brew tap FelixKratz/formulae
+brew install borders
