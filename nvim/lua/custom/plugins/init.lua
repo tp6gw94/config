@@ -6,7 +6,7 @@ return {
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
-      dashboard = { enabled = true },
+      dashboard = { enabled = false },
       explorer = { enabled = false },
       indent = { enabled = true },
       input = { enabled = true },
@@ -23,7 +23,26 @@ return {
       -- Picker
       {'<leader>f', function() Snacks.picker.files({exclude = {'@mf-types'}}) end, desc = 'Find Files'},
       {'<leader>F', function() Snacks.picker.files({hidden = true, ignored = true}) end},
-      -- {'<leader><space>', function() Snacks.picker.buffers() end, desc = 'Find Buffers'},
+      {'<leader><space>', function() 
+        Snacks.picker.smart({
+          multi = { 'buffers', 'recent', 'files'},  
+          matcher = {
+            cwd_bonus = true,
+            fuzzy = true,
+            smartcase = true,
+          },
+          sort = function(a, b)
+            -- Try to pull recency information if available; if not, rely on the internal score.
+            local a_time = a.last_used or 0
+            local b_time = b.last_used or 0
+            if a_time ~= b_time then
+              return a_time > b_time
+            else
+              return (a.score or 0) > (b.score or 0)
+            end
+         end,
+        }) 
+      end, desc = 'Find Buffers'},
       {'<leader>:', function() Snacks.picker.command_history() end, desc = 'Command History'},
       {'<leader>N', function() Snacks.picker.notifications() end, desc = 'Notification History'}, 
       {"<leader>'", function() Snacks.picker.resume() end, desc = 'Resume Picker'},
@@ -36,11 +55,11 @@ return {
       {'<leader>sR',function() Snacks.picker.registers() end, desc = 'Registers'},
       {'<leader>s/',function() Snacks.picker.search_history() end, desc = 'Search History'},
       -- LSP
-      {'gd',function() Snacks.picker.lsp_definitions() end, desc = 'Goto [D]efinition'},
-      {'gD',function() Snacks.picker.lsp_declarations() end, desc = 'Goto [D]eclarations'},
-      {'gr',function() Snacks.picker.lsp_references() end, desc = 'Goto [R]eferences'},
-      {'gI',function() Snacks.picker.lsp_implementations() end, desc = 'Goto Implementation'},
-      {'gy',function() Snacks.picker.lsp_type_definitions() end, desc = 'Goto T[y]pe Definition'},
+      {'gd',function() Snacks.picker.lsp_definitions({auto_confirm = false}) end, desc = 'Goto [D]efinition'},
+      {'gD',function() Snacks.picker.lsp_declarations({auto_confirm = false}) end, desc = 'Goto [D]eclarations'},
+      {'gr',function() Snacks.picker.lsp_references({auto_confirm = false}) end, desc = 'Goto [R]eferences'},
+      {'gI',function() Snacks.picker.lsp_implementations({auto_confirm = false}) end, desc = 'Goto Implementation'},
+      {'gy',function() Snacks.picker.lsp_type_definitions({auto_confirm = false}) end, desc = 'Goto T[y]pe Definition'},
       {'<leader>ss',function() Snacks.picker.lsp_symbols() end, desc = 'LSP Symbols'},
       {'<leader>sS',function() Snacks.picker.lsp_workspace_symbols() end, desc = 'LSP Workspace Symbols'},
       -- Buffer

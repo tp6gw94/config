@@ -24,9 +24,39 @@ return {
   {
     'folke/flash.nvim',
     event = 'VeryLazy',
-    vscode = true,
     ---@type Flash.Config
-    opts = {},
+    opts = {
+      picker = {
+        win = {
+          input = {
+            keys = {
+              ['<a-s>'] = { 'flash', mode = { 'n', 'i' } },
+              ['s'] = { 'flash' },
+            },
+          },
+        },
+        actions = {
+          flash = function(picker)
+            require('flash').jump {
+              pattern = '^',
+              label = { after = { 0, 0 } },
+              search = {
+                mode = 'search',
+                exclude = {
+                  function(win)
+                    return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= 'snacks_picker_list'
+                  end,
+                },
+              },
+              action = function(match)
+                local idx = picker.list:row2idx(match.pos[1])
+                picker.list:_move(idx, true, true)
+              end,
+            }
+          end,
+        },
+      },
+    },
     -- stylua: ignore
     keys = {
       { "s", function() require('flash').jump() end, mode = { "n", "x", "o" }, desc = "Flash" },
@@ -127,7 +157,7 @@ return {
   },
   {
     'ThePrimeagen/harpoon',
-    enabled = true,
+    enabled = false,
     branch = 'harpoon2',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
@@ -149,16 +179,16 @@ return {
       local set = vim.keymap.set
 
       -- Add or skip adding a new cursor by matching word/selection
-      set({ 'n', 'x' }, '<leader>ma', function()
+      set({ 'n', 'x' }, '<space><down>', function()
         mc.matchAddCursor(1)
       end, { desc = 'Add Cursor' })
-      set({ 'n', 'x' }, '<leader>ms', function()
+      set({ 'n', 'x' }, '<space><right>', function()
         mc.matchSkipCursor(1)
       end, { desc = 'Skip Cursor' })
-      set({ 'n', 'x' }, '<leader>mA', function()
+      set({ 'n', 'x' }, '<space><up>', function()
         mc.matchAddCursor(-1)
       end, { desc = 'Add Cursor (Reverse)' })
-      set({ 'n', 'x' }, '<leader>mS', function()
+      set({ 'n', 'x' }, '<space><left>', function()
         mc.matchSkipCursor(-1)
       end, { desc = 'Skip Cursor (Reverse)' })
 
