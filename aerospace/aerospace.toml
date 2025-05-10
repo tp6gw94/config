@@ -104,10 +104,12 @@ alt-ctrl-cmd-j = 'focus down --boundaries-action wrap-around-the-workspace'
 alt-ctrl-cmd-k = 'focus up --boundaries-action wrap-around-the-workspace'
 alt-ctrl-cmd-l = 'focus right --boundaries-action wrap-around-the-workspace'
 
-alt-ctrl-cmd-shift-h = ['focus-monitor left --wrap-around', 'mode main']
-alt-ctrl-cmd-shift-j = ['focus-monitor down --wrap-around', 'mode main']
-alt-ctrl-cmd-shift-k = ['focus-monitor up --wrap-around', 'mode main']
-alt-ctrl-cmd-shift-l = ['focus-monitor right --wrap-around', 'mode main']
+alt-ctrl-cmd-shift-h = 'focus-monitor left --wrap-around'
+alt-ctrl-cmd-shift-j = 'focus-monitor down --wrap-around'
+alt-ctrl-cmd-shift-k = 'focus-monitor up --wrap-around'
+alt-ctrl-cmd-shift-l = 'focus-monitor right --wrap-around'
+alt-ctrl-cmd-shift-rightSquareBracket = 'focus-monitor next --wrap-around'
+alt-ctrl-cmd-shift-leftSquareBracket = 'focus-monitor prev --wrap-around'
 
 alt-ctrl-cmd-b = 'workspace B'
 alt-ctrl-cmd-t = 'workspace T'
