@@ -146,7 +146,6 @@ return {
     dependencies = {
       { 'williamboman/mason.nvim', opts = {} },
       'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
@@ -286,30 +285,23 @@ return {
       capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities({}, false), opts.capabilities)
 
       local servers = {
-        ts_ls = {
-          enabled = false,
-        },
         harper_ls = {
           filetypes = {
             '*',
           },
-          settings = {
-            ['harper-ls'] = {
-              userDictPath = '~/.config/dict.txt',
-              linters = {
-                SentenceCapitalization = false,
-                SpellCheck = true,
-              },
-              diagnosticSeverity = 'hint',
+          ['harper-ls'] = {
+            userDictPath = '~/.config/dict.txt',
+            linters = {
+              SentenceCapitalization = false,
+              SpellCheck = true,
             },
+            diagnosticSeverity = 'hint',
           },
         },
         eslint = {
-          settings = {
-            -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
-            workingDirectories = { mode = 'auto' },
-            format = true,
-          },
+          -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
+          workingDirectories = { mode = 'auto' },
+          format = true,
         },
         vtsls = {
           filetypes = {
@@ -320,39 +312,35 @@ return {
             'typescriptreact',
             'typescript.tsx',
           },
-          settings = {
-            complete_function_calls = true,
-            vtsls = {
-              enableMoveToFileCodeAction = true,
-              autoUseWorkspaceTsdk = true,
-              experimental = {
-                maxInlayHintLength = 30,
-                completion = {
-                  enableServerSideFuzzyMatch = true,
-                },
+          complete_function_calls = false,
+          vtsls = {
+            enableMoveToFileCodeAction = true,
+            autoUseWorkspaceTsdk = true,
+            experimental = {
+              maxInlayHintLength = 30,
+              completion = {
+                enableServerSideFuzzyMatch = true,
               },
             },
-            typescript = {
-              updateImportsOnFileMove = { enabled = 'always' },
-              suggest = {
-                completeFunctionCalls = true,
-              },
-              inlayHints = {
-                enumMemberValues = { enabled = true },
-                functionLikeReturnTypes = { enabled = false },
-                parameterNames = { enabled = 'literals' },
-                parameterTypes = { enabled = true },
-                propertyDeclarationTypes = { enabled = true },
-                variableTypes = { enabled = false },
-              },
+          },
+          typescript = {
+            updateImportsOnFileMove = { enabled = 'always' },
+            suggest = {
+              completeFunctionCalls = true,
+            },
+            inlayHints = {
+              enumMemberValues = { enabled = true },
+              functionLikeReturnTypes = { enabled = false },
+              parameterNames = { enabled = 'literals' },
+              parameterTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = true },
+              variableTypes = { enabled = false },
             },
           },
         },
         tailwindcss = {
-          settings = {
-            tailwindCSS = {
-              classAttributes = { 'class', 'className' },
-            },
+          tailwindCSS = {
+            classAttributes = { 'class', 'className' },
           },
           filetypes_exclude = { 'markdown' },
           filetypes_include = {},
@@ -387,28 +375,24 @@ return {
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
       })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
-        ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+        ensure_installed = { ensure_installed = ensure_installed },
         automatic_installation = false,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
 
             if server_name == 'eslint' then
               vim.api.nvim_create_autocmd('BufWritePre', {
-                pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
+                pattern = { '*.tsx', '*.ts', '*.jsx', '*.js', '*.vue' },
                 command = 'silent! EslintFixAll',
                 group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
               })
             end
 
-            require('lspconfig')[server_name].setup(server)
+            vim.lsp.config(server_name, server)
+            vim.lsp.enable(server_name)
           end,
         },
       }
