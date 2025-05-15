@@ -5,6 +5,7 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
+      animate = {},
       bigfile = { enabled = true },
       dashboard = { enabled = false },
       explorer = { enabled = false },
@@ -69,7 +70,7 @@ return {
       {'<leader>ba',function() Snacks.bufdelete.all() end, desc = 'Buffer Delete All'},
       -- UI
       -- {'<leader>z',function() Snacks.zen() end, desc = 'Toggle Zen'},
-      {'<leader>Z',function() Snacks.zen.zoom() end, desc = 'Toggle Zoom'},
+      {'<leader><Enter>',function() Snacks.zen.zoom() end, desc = 'Toggle Zoom'},
       -- Git
       {'<leader>gg',function() Snacks.lazygit() end, desc = 'Lazygit'},
     },

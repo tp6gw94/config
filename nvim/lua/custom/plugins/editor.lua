@@ -226,11 +226,7 @@ return {
       hl(0, 'MultiCursorDisabledSign', { link = 'SignColumn' })
     end,
   },
-  {
-    'nvim-lualine/lualine.nvim',
-    enabled = false,
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-  },
+
   {
     'nanozuki/tabby.nvim',
     ---@type TabbyConfig

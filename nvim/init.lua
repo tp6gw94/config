@@ -58,8 +58,8 @@ require('lazy').setup {
         { '<leader>a', group = '[A]i', mode = { 'n', 'x' }, icon = '' },
         { '<leader>m', group = '[M]ulti Cursor', mode = { 'n', 'x' }, icon = '󰗧' },
         { '<leader>w', group = '[W]indow', mode = { 'n', 'x' }, icon = '' },
+        { '<leader>t', group = '[T]ab', mode = { 'n', 'x' }, icon = '󰓩' },
 
-        { '<leader>h', icon = '󰰁' },
         { '<leader>E', icon = '' },
       },
     },

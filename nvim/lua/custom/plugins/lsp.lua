@@ -341,7 +341,7 @@ return {
       })
 
       require('mason-lspconfig').setup {
-        ensure_installed = ensure_installed,
+        ensure_installed = {},
         automatic_installation = false,
         handlers = {
           function(server_name)
@@ -351,8 +351,9 @@ return {
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
 
-            -- vim.lsp.config(server_name, server)
-            require('lspconfig')[server_name].setup(server)
+            vim.lsp.enable(server_name)
+            vim.lsp.config(server_name, server)
+            -- require('lspconfig')[server_name].setup(server)
           end,
         },
       }
@@ -367,20 +368,6 @@ return {
           'typescriptreact',
           'vue',
         },
-        on_attach = function(buf)
-          vim.api.nvim_create_autocmd('BufWritePre', {
-            buffer = 0,
-            callback = function()
-              vim.cmd 'TSToolsRemoveUnusedImports'
-              vim.cmd 'LspEslintFixAll'
-            end,
-          })
-          -- vim.api.nvim_create_autocmd('BufWritePre', {
-          --   pattern = { '*.tsx', '*.ts', '*.jsx', '*.js', '*.vue' },
-          --   callback = function() end,
-          --   group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
-          -- })
-        end,
         settings = {
           capabilities = capabilities,
           complete_function_calls = false,
