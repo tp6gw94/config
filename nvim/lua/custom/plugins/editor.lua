@@ -84,7 +84,7 @@ return {
         desc = 'Open Yank History',
       },
         -- stylua: ignore
-    { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank Text" },
+      { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank Text" },
       { 'p', '<Plug>(YankyPutAfter)', mode = { 'n', 'x' }, desc = 'Put Text After Cursor' },
       { 'P', '<Plug>(YankyPutBefore)', mode = { 'n', 'x' }, desc = 'Put Text Before Cursor' },
       { 'gp', '<Plug>(YankyGPutAfter)', mode = { 'n', 'x' }, desc = 'Put Text After Selection' },
@@ -230,5 +230,28 @@ return {
     'nvim-lualine/lualine.nvim',
     enabled = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
+  {
+    'nanozuki/tabby.nvim',
+    ---@type TabbyConfig
+    opts = {
+      preset = 'active_wins_at_tail',
+    },
+    keys = {
+      { '<leader>ta', '<cmd>$tabnew<cr>', mode = { 'n', 'x' }, desc = 'Tab New' },
+      { '<leader>tc', '<cmd>tabclose<cr>', mode = { 'n', 'x' }, desc = 'Tab Close' },
+      {
+        '<leader>tj',
+        '<cmd>Tabby jump_to_tab<cr>',
+        mode = { 'n', 'x' },
+        desc = 'Tab Jump',
+      },
+      {
+        '<leader>tp',
+        '<cmd>Tabby pick_window<cr>',
+        mode = { 'n', 'x' },
+        desc = 'Tab Pick Window',
+      },
+    },
   },
 }

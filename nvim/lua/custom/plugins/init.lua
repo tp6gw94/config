@@ -22,7 +22,8 @@ return {
     keys = {
       -- Picker
       {'<leader>f', function() Snacks.picker.files({exclude = {'@mf-types'}}) end, desc = 'Find Files'},
-      {'<leader>F', function() Snacks.picker.files({hidden = true, ignored = true}) end},
+      {'<leader>F', function() Snacks.picker.files({hidden = true, ignored = true}) end, desc = "Find All Files"},
+      {'<tab><tab>', function() Snacks.picker.buffers({sort_lastused = true}) end, desc="Find Buffer"},
       {'<leader><space>', function() 
         Snacks.picker.smart({
           multi = { 'buffers', 'recent', 'files'},  

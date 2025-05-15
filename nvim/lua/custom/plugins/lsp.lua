@@ -68,6 +68,7 @@ return {
             cmp.show { providers = { 'snippets' } }
           end,
         },
+        ['<Tab>'] = {},
       },
 
       signature = {
@@ -130,32 +131,30 @@ return {
     },
     opts_extend = { 'sources.default' },
   },
-  { -- better rename
-    'smjonas/inc-rename.nvim',
-    config = function()
-      require('inc_rename').setup()
-
-      vim.keymap.set('n', '<leader>cr', function()
-        return ':IncRename ' .. vim.fn.expand '<cword>'
-      end, { expr = true, desc = 'Rename' })
-    end,
-  },
+  -- { -- better rename
+  --   'smjonas/inc-rename.nvim',
+  --   config = function()
+  --     require('inc_rename').setup()
+  --
+  --     vim.keymap.set('n', '<leader>cr', function()
+  --       return ':IncRename ' .. vim.fn.expand '<cword>'
+  --     end, { expr = true, desc = 'Rename' })
+  --   end,
+  -- },
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
       { 'williamboman/mason.nvim', opts = {} },
       'williamboman/mason-lspconfig.nvim',
+      'pmizio/typescript-tools.nvim',
+      'smjonas/inc-rename.nvim',
 
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
       { 'saghen/blink.cmp' },
     },
     opts = {
-      inlay_hints = {
-        enabled = true,
-        exclude = { 'vue' }, -- filetypes for which you don't want to enable inlay hints
-      },
       capabilities = {
         workspace = {
           fileOperations = {
@@ -164,23 +163,13 @@ return {
           },
         },
       },
-      setup = {
-        eslint = function()
-          require('lazyvim.util').lsp.on_attach(function(client)
-            if client.name == 'eslint' then
-              client.server_capabilities.documentFormattingProvider = true
-            elseif client.name == 'tsserver' then
-              client.server_capabilities.documentFormattingProvider = false
-            end
-          end)
-        end,
-      },
+      setup = {},
     },
     config = function(_, opts)
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
-          vim.lsp.inlay_hint.enable(true)
+          vim.lsp.inlay_hint.enable(false)
 
           local map = function(keys, func, desc, mode)
             mode = mode or 'n'
@@ -194,6 +183,7 @@ return {
             vim.lsp.buf.code_action { context = { only = { 'source' } } }
           end, 'Source Code Action')
           map('<leader>cd', vim.diagnostic.open_float, 'Line Diangostics')
+          map('<leader>cr', vim.lsp.buf.rename, '[C]ode [R]ename')
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
@@ -289,58 +279,29 @@ return {
           filetypes = {
             '*',
           },
-          ['harper-ls'] = {
-            userDictPath = '~/.config/dict.txt',
-            linters = {
-              SentenceCapitalization = false,
-              SpellCheck = true,
+          settings = {
+            ['harper-ls'] = {
+              userDictPath = '~/.config/dict.txt',
+              linters = {
+                SentenceCapitalization = false,
+                SpellCheck = true,
+              },
+              diagnosticSeverity = 'hint',
             },
-            diagnosticSeverity = 'hint',
           },
         },
         eslint = {
-          -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
-          workingDirectories = { mode = 'auto' },
-          format = true,
-        },
-        vtsls = {
-          filetypes = {
-            'javascript',
-            'javascriptreact',
-            'javascript.jsx',
-            'typescript',
-            'typescriptreact',
-            'typescript.tsx',
-          },
-          complete_function_calls = false,
-          vtsls = {
-            enableMoveToFileCodeAction = true,
-            autoUseWorkspaceTsdk = true,
-            experimental = {
-              maxInlayHintLength = 30,
-              completion = {
-                enableServerSideFuzzyMatch = true,
-              },
-            },
-          },
-          typescript = {
-            updateImportsOnFileMove = { enabled = 'always' },
-            suggest = {
-              completeFunctionCalls = true,
-            },
-            inlayHints = {
-              enumMemberValues = { enabled = true },
-              functionLikeReturnTypes = { enabled = false },
-              parameterNames = { enabled = 'literals' },
-              parameterTypes = { enabled = true },
-              propertyDeclarationTypes = { enabled = true },
-              variableTypes = { enabled = false },
-            },
+          settings = {
+            -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
+            workingDirectories = { mode = 'auto' },
+            format = true,
           },
         },
         tailwindcss = {
-          tailwindCSS = {
-            classAttributes = { 'class', 'className' },
+          settings = {
+            tailwindCSS = {
+              classAttributes = { 'class', 'className' },
+            },
           },
           filetypes_exclude = { 'markdown' },
           filetypes_include = {},
@@ -360,6 +321,9 @@ return {
           },
         },
         volar = {
+          filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+          separate_diagnostic_server = true,
+          publish_diagnostic_on = 'insert_leave',
           init_options = {
             typescript = {
               tsdk = '~/.volta/tools/shared/typescript/lib',
@@ -377,23 +341,56 @@ return {
       })
 
       require('mason-lspconfig').setup {
-        ensure_installed = { ensure_installed = ensure_installed },
+        ensure_installed = ensure_installed,
         automatic_installation = false,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
+            -- This handles overriding only values explicitly passed
+            -- by the server configuration above. Useful when disabling
+            -- certain features of an LSP (for example, turning off formatting for ts_ls)
+            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
 
-            if server_name == 'eslint' then
-              vim.api.nvim_create_autocmd('BufWritePre', {
-                pattern = { '*.tsx', '*.ts', '*.jsx', '*.js', '*.vue' },
-                command = 'silent! EslintFixAll',
-                group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
-              })
-            end
-
-            vim.lsp.config(server_name, server)
-            vim.lsp.enable(server_name)
+            -- vim.lsp.config(server_name, server)
+            require('lspconfig')[server_name].setup(server)
           end,
+        },
+      }
+
+      local data_path = vim.fn.stdpath 'data'
+
+      require('typescript-tools').setup {
+        filetypes = {
+          'javascript',
+          'javascriptreact',
+          'typescript',
+          'typescriptreact',
+          'vue',
+        },
+        on_attach = function(buf)
+          vim.api.nvim_create_autocmd('BufWritePre', {
+            buffer = 0,
+            callback = function()
+              vim.cmd 'TSToolsRemoveUnusedImports'
+              vim.cmd 'LspEslintFixAll'
+            end,
+          })
+          -- vim.api.nvim_create_autocmd('BufWritePre', {
+          --   pattern = { '*.tsx', '*.ts', '*.jsx', '*.js', '*.vue' },
+          --   callback = function() end,
+          --   group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
+          -- })
+        end,
+        settings = {
+          capabilities = capabilities,
+          complete_function_calls = false,
+          tsserver_file_preferences = {
+            includeInlayParameterNameHints = 'all',
+          },
+          tsserver_plugins = {
+            '@vue/typescript-plugin',
+            location = data_path .. '/mason/packages/vue-language-server/node_modules/@vue/language-server',
+          },
         },
       }
     end,
