@@ -14,3 +14,4 @@ rsync -a borders config
 cp starship.toml config
 cp ./sync.sh config
 cp ./install.sh config
+cp ./Brewfile config
