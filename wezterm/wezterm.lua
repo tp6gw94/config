@@ -116,7 +116,7 @@ config.keys = {
     action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
   },
   {
-    key = "z",
+    key = "Enter",
     mods = "LEADER",
     action = act.TogglePaneZoomState,
   },
