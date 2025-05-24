@@ -247,47 +247,35 @@ shift-z = ['move-node-to-workspace Z --focus-follows-window', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace T']
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace C']
 
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace B']
 
 [[on-window-detected]]
-if.app-id = 'com.getupnote.desktop'
-if.during-aerospace-startup = true
-run = ['move-node-to-workspace N']
-
-[[on-window-detected]]
-if.app-id = 'com.getupnote.desktop'
-if.during-aerospace-startup = true
-run = ['move-node-to-workspace N']
-
-[[on-window-detected]]
 if.app-id = 'com.apple.Notes'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace N']
 
 [[on-window-detected]]
-if.during-aerospace-startup = true
 if.app-name-regex-substring = 'YT Music'
 run = ['layout floating', 'move-node-to-workspace M']
 
 [[on-window-detected]]
 if.app-id = 'org.videolan.vlc'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace M']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
 run = ['layout floating']
+
+[[on-window-detected]]
+if.window-title-regex-substring = 'SliverBullet'
+run = ['move-node-to-workspace N']
 
 [workspace-to-monitor-force-assignment]
 T = ['LS27A600U']
