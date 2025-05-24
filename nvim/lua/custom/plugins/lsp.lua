@@ -148,6 +148,7 @@ return {
       { 'williamboman/mason.nvim', opts = {} },
       'williamboman/mason-lspconfig.nvim',
       'pmizio/typescript-tools.nvim',
+      'ray-x/go.nvim',
       'smjonas/inc-rename.nvim',
 
       -- Useful status updates for LSP.
@@ -235,27 +236,25 @@ return {
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
         underline = { severity = vim.diagnostic.severity.ERROR },
-        -- virtual_lines = {
-        --   current_line = true,
-        --   format = function(diagnostic)
-        --     if diagnostic.severity ~= vim.diagnostic.severity.HINT then
-        --       return nil
-        --     end
-        --
-        --     local diagnostic_message = {
-        --       [vim.diagnostic.severity.ERROR] = diagnostic.message,
-        --       [vim.diagnostic.severity.WARN] = diagnostic.message,
-        --       [vim.diagnostic.severity.INFO] = diagnostic.message,
-        --       [vim.diagnostic.severity.HINT] = diagnostic.message,
-        --     }
-        --     return diagnostic_message[diagnostic.severity]
-        --   end,
-        -- },
+        virtual_lines = {
+          current_line = false,
+          format = function(diagnostic)
+            if diagnostic.severity == vim.diagnostic.severity.ERROR then
+              return diagnostic.message
+            end
+
+            return nil
+          end,
+        },
         virtual_text = {
           current_line = true,
           source = 'if_many',
           spacing = 4,
           format = function(diagnostic)
+            if diagnostic.severity == vim.diagnostic.severity.ERROR then
+              return nil
+            end
+
             local diagnostic_message = {
               [vim.diagnostic.severity.ERROR] = diagnostic.message,
               [vim.diagnostic.severity.WARN] = diagnostic.message,
@@ -333,6 +332,7 @@ return {
             },
           },
         },
+        gopls = {},
       }
 
       local ensure_installed = vim.tbl_keys(servers or {})
@@ -350,6 +350,10 @@ return {
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+
+            if server_name == 'gopls' then
+              require('go').setup {}
+            end
 
             vim.lsp.enable(server_name)
             vim.lsp.config(server_name, server)
@@ -566,5 +570,27 @@ return {
         require('conform').format { async = true, lsp_format = 'fallback' }
       end, { desc = '[F]ormat buffer' })
     end,
+  },
+  {
+    'ray-x/go.nvim',
+    dependencies = { -- optional packages
+      'ray-x/guihua.lua',
+      'neovim/nvim-lspconfig',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    config = function(lp, opts)
+      require('go').setup(opts)
+      local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        pattern = '*.go',
+        callback = function()
+          require('go.format').goimports()
+        end,
+        group = format_sync_grp,
+      })
+    end,
+    event = { 'CmdlineEnter' },
+    ft = { 'go', 'gomod' },
+    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
 }

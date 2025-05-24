@@ -23,12 +23,4 @@ return {
       { '<leader>p', '<cmd>PasteImage<cr>', desc = 'Paste image from system clipboard', ft = { 'markdown', 'tex', 'typst', 'rst', 'org' } },
     },
   },
-  {
-    'zk-org/zk-nvim',
-    config = function()
-      require('zk').setup {
-        picker = 'snacks_picker',
-      }
-    end,
-  },
 }
