@@ -314,11 +314,6 @@ return {
             },
           },
         },
-        typos_lsp = {
-          init_options = {
-            diagnosticSeverity = vim.diagnostic.severity.HINT,
-          },
-        },
         volar = {
           filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
           separate_diagnostic_server = true,
@@ -333,6 +328,7 @@ return {
           },
         },
         gopls = {},
+        htmx = {},
       }
 
       local ensure_installed = vim.tbl_keys(servers or {})

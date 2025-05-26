@@ -65,6 +65,8 @@ return {
           hex_color = hipatterns.gen_highlighter.hex_color(),
         },
       }
+
+      require('mini.cursorword').setup()
     end,
   },
 }
