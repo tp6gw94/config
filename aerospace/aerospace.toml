@@ -274,7 +274,7 @@ if.app-id = 'com.apple.finder'
 run = ['layout floating']
 
 [[on-window-detected]]
-if.window-title-regex-substring = 'SliverBullet'
+if.window-title-regex-substring = 'SilverBullet'
 run = ['move-node-to-workspace N']
 
 [workspace-to-monitor-force-assignment]
