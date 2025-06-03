@@ -63,3 +63,9 @@ vim.opt.termguicolors = true
 
 vim.opt.numberwidth = 1
 vim.opt.statuscolumn = '%l%s'
+
+vim.filetype.add {
+  extension = {
+    ['http'] = 'http',
+  },
+}
