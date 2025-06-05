@@ -236,25 +236,21 @@ return {
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
         underline = { severity = vim.diagnostic.severity.ERROR },
-        virtual_lines = {
-          current_line = false,
-          format = function(diagnostic)
-            if diagnostic.severity == vim.diagnostic.severity.ERROR then
-              return diagnostic.message
-            end
-
-            return nil
-          end,
-        },
+        -- virtual_lines = {
+        --   current_line = false,
+        --   format = function(diagnostic)
+        --     if diagnostic.severity == vim.diagnostic.severity.ERROR then
+        --       return diagnostic.message
+        --     end
+        --
+        --     return nil
+        --   end,
+        -- },
         virtual_text = {
           current_line = true,
           source = 'if_many',
           spacing = 4,
           format = function(diagnostic)
-            if diagnostic.severity == vim.diagnostic.severity.ERROR then
-              return nil
-            end
-
             local diagnostic_message = {
               [vim.diagnostic.severity.ERROR] = diagnostic.message,
               [vim.diagnostic.severity.WARN] = diagnostic.message,
@@ -338,8 +334,19 @@ return {
       })
 
       require('mason-lspconfig').setup {
-        ensure_installed = {},
-        automatic_installation = false,
+        ensure_installed = {
+          'lua_ls',
+          'gopls',
+          'rust_analyzer',
+          'html',
+          'cssls',
+          'jsonls',
+          'yamlls',
+          'bashls',
+          'dockerls',
+          'marksman',
+        },
+        automatic_enable = true,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}

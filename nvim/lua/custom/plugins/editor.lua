@@ -265,4 +265,24 @@ return {
       kulala_keymaps_prefix = '',
     },
   },
+
+  {
+    'leath-dub/snipe.nvim',
+    opts = {
+      navigate = {
+        cancel_snipe = { '<esc>', 'q' },
+        open_vsplit = '<C-v>',
+        open_split = '<C-s>',
+      },
+    },
+    keys = {
+      {
+        '<leader><space>',
+        function()
+          require('snipe').open_buffer_menu()
+        end,
+        desc = 'Open Snipe buffer menu',
+      },
+    },
+  },
 }

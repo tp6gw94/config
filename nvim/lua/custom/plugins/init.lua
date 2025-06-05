@@ -24,27 +24,7 @@ return {
       -- Picker
       {'<leader>f', function() Snacks.picker.files({exclude = {'@mf-types'}}) end, desc = 'Find Files'},
       {'<leader>F', function() Snacks.picker.files({hidden = true, ignored = true}) end, desc = "Find All Files"},
-      {'<tab><tab>', function() Snacks.picker.buffers({sort_lastused = true}) end, desc="Find Buffer"},
-      {'<leader><space>', function() 
-        Snacks.picker.smart({
-          multi = { 'buffers', 'recent', 'files'},  
-          matcher = {
-            cwd_bonus = true,
-            fuzzy = true,
-            smartcase = true,
-          },
-          sort = function(a, b)
-            -- Try to pull recency information if available; if not, rely on the internal score.
-            local a_time = a.last_used or 0
-            local b_time = b.last_used or 0
-            if a_time ~= b_time then
-              return a_time > b_time
-            else
-              return (a.score or 0) > (b.score or 0)
-            end
-         end,
-        }) 
-      end, desc = 'Find Buffers'},
+      -- {'<tab><tab>', function() Snacks.picker.buffers({sort_lastused = true}) end, desc="Find Buffer"},
       {'<leader>:', function() Snacks.picker.command_history() end, desc = 'Command History'},
       {'<leader>N', function() Snacks.picker.notifications() end, desc = 'Notification History'}, 
       {"<leader>'", function() Snacks.picker.resume() end, desc = 'Resume Picker'},
