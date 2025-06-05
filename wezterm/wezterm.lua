@@ -120,6 +120,26 @@ config.keys = {
     mods = "LEADER",
     action = act.TogglePaneZoomState,
   },
+  {
+    key = "h",
+    mods = "LEADER",
+    action = act.ActivatePaneDirection("Left"),
+  },
+  {
+    key = "l",
+    mods = "LEADER",
+    action = act.ActivatePaneDirection("Right"),
+  },
+  {
+    key = "k",
+    mods = "LEADER",
+    action = act.ActivatePaneDirection("Up"),
+  },
+  {
+    key = "j",
+    mods = "LEADER",
+    action = act.ActivatePaneDirection("Down"),
+  },
   -- pane move
   {
     key = "P",
@@ -134,22 +154,22 @@ config.keys = {
   -- pane resize
   {
     key = "H",
-    mods = "LEADER",
+    mods = "ALT",
     action = act.AdjustPaneSize({ "Left", 5 }),
   },
   {
     key = "J",
-    mods = "LEADER",
+    mods = "ALT",
     action = act.AdjustPaneSize({ "Down", 5 }),
   },
   {
     key = "K",
-    mods = "LEADER",
+    mods = "ALT",
     action = act.AdjustPaneSize({ "Up", 5 }),
   },
   {
     key = "L",
-    mods = "LEADER",
+    mods = "ALT",
     action = act.AdjustPaneSize({ "Right", 5 }),
   },
   -- close pane
@@ -210,7 +230,7 @@ config.keys = {
     action = act.CloseCurrentTab({ confirm = true }),
   },
   {
-    key = "-",
+    key = "T",
     mods = "LEADER",
     action = act.ShowTabNavigator,
   },
