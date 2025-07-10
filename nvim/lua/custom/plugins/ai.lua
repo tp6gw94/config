@@ -1,49 +1,49 @@
 return {
   {
-    'olimorris/codecompanion.nvim',
+    "olimorris/codecompanion.nvim",
     opts = {
       display = {
         action_palette = {
-          provider = 'default',
+          provider = "default",
         },
       },
       strategies = {
         chat = {
-          adapter = 'anthropic',
+          adapter = "gemini",
         },
         inline = {
-          adapter = 'copilot',
+          adapter = "copilot",
         },
         cmd = {
-          adapter = 'openai',
+          adapter = "gemini",
         },
       },
     },
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-treesitter/nvim-treesitter',
-      'ravitemer/mcphub.nvim',
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "ravitemer/mcphub.nvim",
       {
-        'MeanderingProgrammer/render-markdown.nvim',
-        ft = { 'markdown', 'codecompanion' },
+        "MeanderingProgrammer/render-markdown.nvim",
+        ft = { "markdown", "codecompanion" },
       },
       {
-        'echasnovski/mini.diff',
+        "echasnovski/mini.diff",
         config = function()
-          local diff = require 'mini.diff'
-          diff.setup {
+          local diff = require("mini.diff")
+          diff.setup({
             -- Disabled by default
             source = diff.gen_source.none(),
-          }
+          })
         end,
       },
       {
-        'HakonHarnes/img-clip.nvim',
+        "HakonHarnes/img-clip.nvim",
         opts = {
           filetypes = {
             codecompanion = {
               prompt_for_file_name = false,
-              template = '[Image]($FILE_PATH)',
+              template = "[Image]($FILE_PATH)",
               use_absolute_path = true,
             },
           },
@@ -51,13 +51,13 @@ return {
       },
     },
     keys = {
-      { '<leader>aa', mode = { 'n', 'v' }, '<cmd>:CodeCompanionActions<cr>', desc = 'AI Code Action' },
+      { "<leader>aa", mode = { "n", "v" }, "<cmd>:CodeCompanionActions<cr>", desc = "AI Code Action" },
     },
   },
   {
-    'zbirenbaum/copilot.lua',
-    cmd = 'Copilot',
-    event = 'InsertEnter',
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
     opts = {
       suggestion = { enabled = false },
       panel = { enabled = false },

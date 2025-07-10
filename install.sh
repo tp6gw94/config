@@ -8,3 +8,5 @@ curl https://get.volta.sh | bash
 volta install node
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+brew services start borders
