@@ -1,8 +1,8 @@
 return {
   {
-    'projekt0n/github-nvim-theme',
+    "projekt0n/github-nvim-theme",
     enabled = false,
-    name = 'github-theme',
+    name = "github-theme",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
@@ -10,22 +10,23 @@ return {
     end,
   },
   {
-    'zenbones-theme/zenbones.nvim',
+    "zenbones-theme/zenbones.nvim",
     -- Optionally install Lush. Allows for more configuration or extending the colorscheme
     -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
     -- In Vim, compat mode is turned on as Lush only works in Neovim.
-    dependencies = 'rktjmp/lush.nvim',
+    dependencies = "rktjmp/lush.nvim",
     enable = true,
     lazy = false,
     priority = 1000,
     config = function()
       vim.g.zenbones_solid_line_nr = true
-      vim.g.zenbones_lightness = 'bright'
-      vim.cmd.colorscheme 'zenbones'
+      vim.cmd.colorscheme("zenbones")
+      vim.cmd("highlight Visual guibg=#8CC0FF")
+      -- vim.cmd.colorscheme("neobones")
     end,
   },
   {
-    'rebelot/kanagawa.nvim',
+    "rebelot/kanagawa.nvim",
     enabled = false,
     lazy = false,
     priority = 1000,
@@ -38,7 +39,7 @@ return {
     end,
   },
   {
-    'ellisonleao/gruvbox.nvim',
+    "ellisonleao/gruvbox.nvim",
     enabled = false,
     lazy = false,
     priority = 1000,
@@ -50,7 +51,7 @@ return {
     end,
   },
   {
-    'folke/tokyonight.nvim',
+    "folke/tokyonight.nvim",
     enabled = false,
     lazy = false,
     priority = 1000,
