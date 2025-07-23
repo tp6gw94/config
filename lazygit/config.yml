@@ -42,3 +42,10 @@ customCommands:
     context: remotes
     command: "git fetch --prune origin --verbose"
     description: "Fetch remote branches"
+
+  - key: "U"
+    command: "git submodule update --remote"
+    context: "submodules"
+    description: "Update submodules to remote"
+
+
