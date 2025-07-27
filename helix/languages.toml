@@ -16,5 +16,60 @@ injection-regex = "vue"
 file-types = ["vue"]
 roots = ["package.json", ".git"]
 auto-format = true
-language-servers = ["volar"]
+language-servers = ["volar", "tailwindcss-ls"]
 formatter = { command = 'prettier', args = ["--parser", "vue"] }
+
+
+[[language]]
+name = "javascript"
+language-servers = ["typescript-language-server", "vscode-eslint-language-server"]
+auto-format = true
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+
+[[language]]
+name = "typescript"
+language-servers = ["typescript-language-server", "vscode-eslint-language-server"]
+auto-format = true
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+
+[[language]]
+name = "tsx"
+language-servers = ["typescript-language-server", "vscode-eslint-language-server"]
+auto-format = true
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+
+[[language]]
+name = "jsx"
+language-servers = ["typescript-language-server", "vscode-eslint-language-server"]
+auto-format = true
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+
+[[language]]
+name = "json"
+auto-format = false
+formatter = { command = 'npx', args = ["prettier", "--parser", "json"] }
+
+
+[language-server.tailwindcss-ls]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "html"
+language-servers = [ "vscode-html-language-server", "tailwindcss-ls" ]
+
+[[language]]
+name = "css"
+language-servers = [ "vscode-css-language-server", "tailwindcss-ls" ]
+
+[[language]]
+name = "jsx"
+language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
+
+[[language]]
+name = "tsx"
+language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
+
+[[language]]
+name = "svelte"
+language-servers = [ "svelteserver", "tailwindcss-ls" ]
