@@ -1,154 +1,20 @@
-[language-server.scls]
-command = "simple-completion-language-server"
+[language-server.typescript-language-server.config]
+plugins = [{  name = "@vue/typescript-plugin", location = "/Users/chenshengtai/.volta/bin/vue-language-server", languages = ["vue"] }]
 
-[language-server.scls.config]
-max_completion_items = 20    # set max completion results len for each group: words, snippets, unicode-input
-snippets_first = true        # completions will return before snippets by default
-feature_words = true         # enable completion by word
-feature_snippets = true      # enable snippets
-feature_unicode_input = true # enable "unicode input"
-feature_paths = false        # enable path completion
-
-[[sources]] # list of sources to load
-name = "friendly-snippets"                                  # optional name shown on snippet description
-git = "https://github.com/rafamadriz/friendly-snippets.git" # git repo with snippets collections
-
-[language-server.typos]
-command = "typos-lsp"
-config.diagnosticSeverity = "Warning"
-
-[language-server.tailwindcss-ls]
+[language-server.volar]
+command = "vue-language-server"
 args = ["--stdio"]
-command = "tailwindcss-language-server"
 
-[language-server.eslint]
-args = ["--stdio"]
-command = "vscode-eslint-language-server"
-
-[language-server.eslint.config]
-problems = { shortenToSingleLine = false }
-nodePath = ""
-format = { enable = true }
-quiet = false
-rulesCustomizations = []
-run = "onType"
-validate = "on"
-codeAction = { disableRuleComment = { enable = true, location = "separateLine" }, showDocumentation = { enable = false } }
-codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
-experimental = {}
-workingDirectories = [{ mode = "auto" }]
-
-[language-server.typescript-language-server]
-required-root-patterns = ["package.json", "tsconfig.json"]
-
-[language-server.typescript-language-server.config.typescript.inlayHints]
-includeInlayEnumMemberValueHints = true
-includeInlayFunctionLikeReturnTypeHints = false
-includeInlayFunctionParameterTypeHints = false
-includeInlayParameterNameHints = "all"
-includeInlayParameterNameHintsWhenArgumentMatchesName = true
-includeInlayPropertyDeclarationTypeHints = false
-includeInlayVariableTypeHints = false
-includeInlayVariableTypeHintsWhenTypeMatchesName = true
+[language-server.volar.config]
+vue = { hybridMode = false }
+typescript = { tsdk = "node_modules/typescript/lib" }
 
 [[language]]
-name = "typescript"
-language-servers = ["typescript-language-server", "eslint", "scls", "typos"]
-roots = ["package.json", "tsconfig.json", ".git"]
-formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+name = "vue"
+scope = "source.vue"
+injection-regex = "vue"
+file-types = ["vue"]
+roots = ["package.json", ".git"]
 auto-format = true
-
-
-[[language]]
-name = "javascript"
-language-servers = ["typescript-language-server", "eslint", "scls", "typos"]
-roots = ["package.json", "tsconfig.json"]
-formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
-auto-format = true
-
-
-[[language]]
-name = "tsx"
-language-servers = [
-  "typescript-language-server",
-  "eslint",
-  "scls",
-  "typos",
-  "tailwindcss-ls",
-]
-roots = ["package.json", "tsconfig.json", ".git"]
-formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
-auto-format = true
-
-
-[[language]]
-name = "jsx"
-language-servers = [
-  "typescript-language-server",
-  "eslint",
-  "scls",
-  "typos",
-  "tailwindcss-ls",
-]
-roots = ["package.json", "tsconfig.json"]
-formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
-auto-format = true
-
-
-[[language]]
-name = "json"
-language-servers = ["vscode-json-language-server"]
-formatter = { command = 'npx', args = ["prettier", "--parser", "json"] }
-auto-format = false
-
-[[language]]
-name = "lua"
-auto-format = true
-
-[language-server.vscode-json-language-server.config]
-json = { validate = { enable = true }, format = { enable = true } }
-provideFormatter = true
-
-[language-server.vscode-css-language-server.config]
-css = { validate = { enable = true } }
-scss = { validate = { enable = true } }
-less = { validate = { enable = true } }
-provideFormatter = true
-
-[[language]]
-name = "html"
-formatter = { command = 'npx', args = ["prettier", "--parser", "html"] }
-language-servers = ["vscode-html-language-server", "tailwindcss-ls"]
-auto-format = true
-
-[[language]]
-name = "css"
-formatter = { command = 'npx', args = ["prettier", "--parser", "css"] }
-language-servers = ["vscode-css-language-server", "tailwindcss-ls"]
-auto-format = true
-
-[[language]]
-name = "scss"
-formatter = { command = "npx", args = ["prettier", "--parser", "scss"] }
-language-servers = ["vscode-css-language-server", "tailwindcss-ls"]
-auto-format = true
-
-[[language]]
-name = "python"
-language-servers = ["pylsp", "typos"]
-roots = [".git"]
-workspace-lsp-roots = ["src/updater"]
-auto-format = true
-
-[language-server.pylsp.config.pylsp.plugins]
-black = { enabled = true }
-isort = { enabled = true }
-rope_autoimport = { enabled = true }
-pylint = { enabled = true }
-flake8 = { enabled = false, ignore = ["E501"] }
-autopep8 = { enabled = false }
-mccabe = { enabled = false }
-pycodestyle = { enabled = false }
-pyflakes = { enabled = false }
-yapf = { enabled = false }
-ruff = { enabled = true, ignore = ["F401"], lineLength = 120 }
+language-servers = ["volar"]
+formatter = { command = 'prettier', args = ["--parser", "vue"] }
