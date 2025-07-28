@@ -1,4 +1,4 @@
-theme = "cyan_light"
+theme = "yo_sand_light"
 
 [editor]
 scrolloff = 8
@@ -38,7 +38,6 @@ other-lines = "disable"
 
 # keys
 [keys.normal]
-C-o = ":config-open"
 C-r = ":config-reload"
 
 esc = ["collapse_selection", "keep_primary_selection"]
@@ -48,8 +47,40 @@ esc = ["collapse_selection", "keep_primary_selection"]
 "L" = "goto_next_buffer"
 "C-space" = "expand_selection"
 
+p = ["paste_clipboard_after", "collapse_selection"]
+P = ["paste_clipboard_before", "collapse_selection"]
+# Vim
+0 = "goto_line_start"
+"$" = "goto_line_end"
+"^" = "goto_first_nonwhitespace"
+"%" = "match_brackets"
+V = ["select_mode", "extend_to_line_bounds"]
+
+i = ["insert_mode", "collapse_selection"]
+a = ["append_mode", "collapse_selection"]
+
+"*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
+"#" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_prev"]
+
+[keys.select]
+0 = "goto_line_start"
+"$" = "goto_line_end"
+"^" = "goto_first_nonwhitespace"
+"%" = "match_brackets"
+
+i = "select_textobject_inner"
+a = "select_textobject_around"
+
+d = ["yank_main_selection_to_clipboard", "delete_selection"]
+y = ["yank_main_selection_to_clipboard", "normal_mode", "flip_selections", "collapse_selection"]
+p = "replace_selections_with_clipboard"
+P = "paste_clipboard_before"
+
+esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]
+
 [keys.insert]
-"j" = { k = "normal_mode" }
+esc = ["collapse_selection", "normal_mode"]
+"j" = { k = ["collapse_selection", "normal_mode"] }
 "C-space" = "completion"
 "A-i" = "signature_help"
 
@@ -76,11 +107,12 @@ E = [
   ':open %sh{cat /tmp/yazi-helix-unique-file}',
   ':redraw'
 ]
+"`"= "buffer_picker"
 
 # buffer
 [keys.normal.space.b]
 f = "buffer_picker"
-c = ":buffer-close"
+d = ":buffer-close"
 a = ":buffer-close-all"
 o = ":buffer-close-others"
 r = ":rla"

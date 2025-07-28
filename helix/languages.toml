@@ -1,5 +1,5 @@
 [language-server.typescript-language-server.config]
-plugins = [{  name = "@vue/typescript-plugin", location = "/Users/chenshengtai/.volta/bin/vue-language-server", languages = ["vue"] }]
+plugins = [{  name = "@vue/typescript-plugin", location = "/Users/chenshengtai/.local/share/nvim/mason/bin/vue-language-server", languages = ["vue"] }]
 
 [language-server.volar]
 command = "vue-language-server"
@@ -9,6 +9,10 @@ args = ["--stdio"]
 vue = { hybridMode = false }
 typescript = { tsdk = "node_modules/typescript/lib" }
 
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
 [[language]]
 name = "vue"
 scope = "source.vue"
@@ -16,7 +20,7 @@ injection-regex = "vue"
 file-types = ["vue"]
 roots = ["package.json", ".git"]
 auto-format = true
-language-servers = ["volar", "tailwindcss-ls"]
+language-servers = ["volar", "tailwindcss-ls", "eslint"]
 formatter = { command = 'prettier', args = ["--parser", "vue"] }
 
 
@@ -28,19 +32,19 @@ formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 
 [[language]]
 name = "typescript"
-language-servers = ["typescript-language-server", "vscode-eslint-language-server"]
+language-servers = ["typescript-language-server", "eslint"]
 auto-format = true
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 
 [[language]]
 name = "tsx"
-language-servers = ["typescript-language-server", "vscode-eslint-language-server"]
+language-servers = ["typescript-language-server", "eslint"]
 auto-format = true
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 
 [[language]]
 name = "jsx"
-language-servers = ["typescript-language-server", "vscode-eslint-language-server"]
+language-servers = ["typescript-language-server", "eslint"]
 auto-format = true
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 
