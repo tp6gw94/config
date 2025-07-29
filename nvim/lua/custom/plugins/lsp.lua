@@ -378,8 +378,40 @@ return {
               require("go").setup({})
             end
 
-            vim.lsp.enable(server_name)
-            vim.lsp.config(server_name, server)
+            -- Only enable eslint if config file exists
+            if server_name == "eslint" then
+              -- Check for ESLint config files
+              local eslint_config_files = {
+                ".eslintrc",
+                ".eslintrc.js",
+                ".eslintrc.json",
+                ".eslintrc.yml",
+                ".eslintrc.yaml",
+                "eslint.config.js",
+                "eslint.config.mjs",
+                "eslint.config.cjs",
+                "package.json", -- Will check for eslintConfig field later if needed
+              }
+              
+              local cwd = vim.fn.getcwd()
+              local has_eslint_config = false
+              
+              for _, config_file in ipairs(eslint_config_files) do
+                if vim.fn.filereadable(cwd .. "/" .. config_file) == 1 then
+                  has_eslint_config = true
+                  break
+                end
+              end
+              
+              -- Only setup eslint if config exists
+              if has_eslint_config then
+                vim.lsp.enable(server_name)
+                vim.lsp.config(server_name, server)
+              end
+            else
+              vim.lsp.enable(server_name)
+              vim.lsp.config(server_name, server)
+            end
             -- require('lspconfig')[server_name].setup(server)
           end,
         },

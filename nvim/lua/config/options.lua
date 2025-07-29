@@ -1,6 +1,7 @@
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.o.swapfile = false
 
 -- Enable mouse mode
 vim.opt.mouse = "a"
