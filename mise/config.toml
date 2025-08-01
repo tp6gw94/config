@@ -1,0 +1,4 @@
+[tools]
+deno = "latest"
+go = "1"
+node = "22"
