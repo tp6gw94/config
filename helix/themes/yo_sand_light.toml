@@ -9,6 +9,12 @@ inherits = "yo_sand"
 "ui.virtual.inlay-hint" = { fg = "p8", underline.style = "curl" }
 "markup.quote" = { fg = "p9" }
 
+# TODO/FIXME 高亮
+"comment.todo" = { fg = "p1", bg = "warning", modifiers = ["bold"] }
+"comment.fixme" = { fg = "p1", bg = "error", modifiers = ["bold"] }
+"comment.note" = { fg = "p1", bg = "info", modifiers = ["bold"] }
+"comment.hack" = { fg = "p1", bg = "constant", modifiers = ["bold"] }
+
 [palette]
 
 # sand

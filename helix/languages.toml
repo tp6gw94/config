@@ -1,5 +1,5 @@
 [language-server.typescript-language-server.config]
-plugins = [{  name = "@vue/typescript-plugin", location = "/Users/chenshengtai/.local/share/nvim/mason/bin/vue-language-server", languages = ["vue"] }]
+plugins = [{  name = "@vue/typescript-plugin", location = "/Users/chenshengtai/.local/share/mise/installs/node/22.17.1/lib/node_modules/@vue/language-server", languages = ["vue"] }]
 
 [language-server.volar]
 command = "vue-language-server"
@@ -7,11 +7,30 @@ args = ["--stdio"]
 
 [language-server.volar.config]
 vue = { hybridMode = false }
-typescript = { tsdk = "node_modules/typescript/lib" }
+typescript = { tsdk = "/Users/chenshengtai/.local/share/mise/installs/node/22.17.1/lib/node_modules/typescript/lib" }
 
 [language-server.eslint]
 command = "vscode-eslint-language-server"
 args = ["--stdio"]
+
+[language-server.eslint.config]
+validate = "on"
+experimental = { useFlatConfig = true }
+rulesCustomizations = []
+run = "onType"
+problems = { shortenToSingleLine = false }
+nodePath = ""
+
+[language-server.eslint.config.codeAction]
+[language-server.eslint.config.codeAction.disableRuleComment]
+enable = true
+location = "separateLine"
+
+[language-server.eslint.config.codeAction.showDocumentation]
+enable = true
+
+[language-server.eslint.config.workingDirectory]
+mode = "location"
 
 [[language]]
 name = "vue"
@@ -20,8 +39,8 @@ injection-regex = "vue"
 file-types = ["vue"]
 roots = ["package.json", ".git"]
 auto-format = true
-language-servers = ["volar", "tailwindcss-ls", "eslint"]
-formatter = { command = 'prettier', args = ["--parser", "vue"] }
+language-servers = ["typescript-language-server", "tailwindcss-ls", "eslint"]
+formatter = { command = 'npx', args = ["prettier", "--parser", "vue"] }
 
 
 [[language]]

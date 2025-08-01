@@ -1,0 +1,127 @@
+# Zenbones theme for Helix - Dark variant
+# Based on zenbones.vim colorscheme
+
+# UI Elements
+"ui.background" = { fg = "fg", bg = "bg" }
+"ui.background.separator" = { fg = "gray5" }
+"ui.text" = { fg = "fg" }
+"ui.text.focus" = { fg = "fg_bright", modifiers = ["bold"] }
+
+# Popups and Menus
+"ui.window" = { fg = "gray5" }
+"ui.popup" = { fg = "fg_bright", bg = "bg_dark" }
+"ui.popup.info" = { fg = "fg_bright", bg = "bg" }
+"ui.text.info" = { fg = "fg_bright", bg = "bg" }
+"ui.help" = { fg = "fg_bright", bg = "bg" }
+"ui.menu" = { fg = "fg", bg = "bg_dark" }
+"ui.menu.selected" = { fg = "fg_bright", modifiers = ["bold"] }
+"ui.menu.scroll" = { fg = "gray3", bg = "bg_dark" }
+"ui.picker.header.column" = { underline.style = "line" }
+
+# Cursor and Selection
+"ui.cursor" = { fg = "bg", bg = "fg" }
+"ui.cursor.insert" = { fg = "bg", bg = "yellow" }
+"ui.cursor.select" = { fg = "bg", bg = "blue" }
+"ui.cursor.match" = { fg = "fg_bright", modifiers = ["bold"] }
+"ui.cursor.primary" = { fg = "bg", bg = "fg", modifiers = ["bold"] }
+"ui.cursor.primary.insert" = { fg = "bg", bg = "yellow", modifiers = ["bold"] }
+"ui.cursor.primary.select" = { fg = "bg", bg = "blue", modifiers = ["bold"] }
+"ui.selection" = { bg = "bg_highlight" }
+"ui.selection.primary" = { bg = "bg_highlight_bright" }
+"ui.cursorline.primary" = { bg = "bg_dark" }
+"ui.cursorcolumn.primary" = { bg = "bg_dark" }
+
+# Line numbers and gutter
+"ui.linenr" = { fg = "gray5" }
+"ui.linenr.selected" = { fg = "fg", modifiers = ["bold"] }
+diff = { fg = "gray3" }
+
+# Statusline and Bufferline
+"ui.bufferline" = { fg = "fg", bg = "bg_statusline" }
+"ui.bufferline.active" = { fg = "bg", bg = "fg" }
+"ui.statusline" = { fg = "fg", bg = "bg_statusline" }
+"ui.statusline.inactive" = { fg = "gray6", bg = "bg_dark" }
+"ui.statusline.normal" = { fg = "bg", bg = "fg" }
+"ui.statusline.insert" = { fg = "bg", bg = "yellow" }
+"ui.statusline.select" = { fg = "bg", bg = "blue" }
+"ui.statusline.separator" = { fg = "gray5" }
+
+# Virtual text
+"ui.virtual" = { fg = "gray4" }
+"ui.virtual.ruler" = { bg = "bg_dark" }
+"ui.virtual.inlay-hint" = { fg = "gray5", underline.style = "dotted" }
+"ui.virtual.jump-label" = { fg = "fg_bright", modifiers = ["bold"], underline = { style = "curl", color = "blue" } }
+
+# Diagnostics
+error = { fg = "red", modifiers = ["bold"] }
+warning = { fg = "yellow", modifiers = ["bold"] }
+info = { fg = "blue", modifiers = ["bold"] }
+hint = { fg = "cyan", modifiers = ["bold"] }
+"diagnostic.error" = { fg = "red", modifiers = ["bold"] }
+"diagnostic.warning" = { fg = "yellow", modifiers = ["bold"] }
+"diagnostic.info" = { fg = "blue", modifiers = ["bold"] }
+"diagnostic.hint" = { fg = "cyan", modifiers = ["bold"] }
+
+# Code syntax
+comment = { fg = "gray6", modifiers = ["italic"] }
+keyword = { fg = "yellow" }
+operator = { fg = "yellow" }
+string = { fg = "green", modifiers = ["italic"] }
+constant = { fg = "gray7", modifiers = ["italic"] }
+"string.special.symbol" = { fg = "magenta" }
+variable = { fg = "gray8" }
+namespace = { fg = "gray8" }
+punctuation = { fg = "gray7" }
+"punctuation.delimiter" = { fg = "gray6" }
+function = { fg = "fg" }
+attribute = { fg = "gray8" }
+tag = { fg = "yellow" }
+label = { fg = "fg_bright" }
+constructor = { fg = "fg_bright" }
+type = { fg = "gray9" }
+
+# Markup
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.heading" = { fg = "fg_bright", modifiers = ["bold"] }
+"markup.heading.marker" = { fg = "gray3" }
+"markup.list" = { fg = "gray3" }
+"markup.link.url" = { underline.style = "line" }
+"markup.link.label" = { underline.style = "dotted" }
+"markup.quote" = { fg = "gray8" }
+
+# Special highlight for TODO, FIXME, NOTE, HACK, WARNING
+"comment.todo" = { fg = "bg", bg = "cyan", modifiers = ["bold"] }
+"comment.fixme" = { fg = "bg", bg = "red", modifiers = ["bold"] }
+"comment.note" = { fg = "bg", bg = "blue", modifiers = ["bold"] }
+"comment.hack" = { fg = "bg", bg = "magenta", modifiers = ["bold"] }
+"comment.warning" = { fg = "bg", bg = "yellow", modifiers = ["bold"] }
+
+[palette]
+# Dark theme colors based on zenbones.vim
+bg = "#1C1917"
+bg_dark = "#25211F"
+bg_highlight = "#3D4042"
+bg_highlight_bright = "#403833"
+bg_statusline = "#352F2D"
+
+fg = "#B4BDC3"
+fg_bright = "#C4CACF"
+
+# Grays
+gray3 = "#5C534F"
+gray4 = "#685F5A"
+gray5 = "#797F84"
+gray6 = "#6E6763"
+gray7 = "#867A74"
+gray8 = "#979FA4"
+gray9 = "#A1938C"
+
+# Colors
+red = "#DE6E7C"
+green = "#819B69"
+yellow = "#B77E64"
+blue = "#6099C0"
+magenta = "#B279A7"
+cyan = "#66A5AD"
