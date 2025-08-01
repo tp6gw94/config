@@ -1,6 +1,6 @@
-rsync -a ./zellij ~/.config
 rsync -a ./.zshrc ~/.config
 rsync -a ./nvim ~/.config
+rsync -a ./helix ~/.config
 rsync -a ./wezterm ~/.config
 rsync -a ./lazygit ~/.config
 rsync -a ./borders ~/.config
@@ -9,3 +9,4 @@ rsync -a ./starship.toml ~/.config
 rsync -a ./yazi ~/.config
 rsync -a ./zk ~/.config
 rsync -a ./aerospace ~/.config
+rsync -a ./mise ~/.config
