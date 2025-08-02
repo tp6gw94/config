@@ -1,5 +1,9 @@
 [language-server.typescript-language-server.config]
-plugins = [{  name = "@vue/typescript-plugin", location = "/Users/chenshengtai/.local/share/mise/installs/node/22.17.1/lib/node_modules/@vue/language-server", languages = ["vue"] }]
+plugins = [
+  { name = "@vue/typescript-plugin", location = "/Users/chenshengtai/.local/share/mise/installs/node/22.17.1/lib/node_modules/@vue/language-server", languages = [
+    "vue",
+  ] },
+]
 
 [language-server.volar]
 command = "vue-language-server"
@@ -32,6 +36,13 @@ enable = true
 [language-server.eslint.config.workingDirectory]
 mode = "location"
 
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
+
+[language-server.harper-ls.config.harper-ls.linters]
+SentenceCapitalization = false
+
 [[language]]
 name = "vue"
 scope = "source.vue"
@@ -39,13 +50,15 @@ injection-regex = "vue"
 file-types = ["vue"]
 roots = ["package.json", ".git"]
 auto-format = true
-language-servers = ["typescript-language-server", "tailwindcss-ls", "eslint"]
+language-servers = ["typescript-language-server", "tailwindcss-ls", "eslint", "harper-ls"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "vue"] }
-
 
 [[language]]
 name = "javascript"
-language-servers = ["typescript-language-server", "vscode-eslint-language-server"]
+language-servers = [
+  "typescript-language-server",
+  "eslint",
+]
 auto-format = true
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 
@@ -79,20 +92,28 @@ args = ["--stdio"]
 
 [[language]]
 name = "html"
-language-servers = [ "vscode-html-language-server", "tailwindcss-ls" ]
+language-servers = ["vscode-html-language-server", "tailwindcss-ls"]
 
 [[language]]
 name = "css"
-language-servers = [ "vscode-css-language-server", "tailwindcss-ls" ]
+language-servers = ["vscode-css-language-server", "tailwindcss-ls"]
 
 [[language]]
 name = "jsx"
-language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
+language-servers = ["typescript-language-server", "tailwindcss-ls"]
 
 [[language]]
 name = "tsx"
-language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
+language-servers = ["typescript-language-server", "tailwindcss-ls"]
 
 [[language]]
 name = "svelte"
-language-servers = [ "svelteserver", "tailwindcss-ls" ]
+language-servers = ["svelteserver", "tailwindcss-ls"]
+
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }
+
+[[language]]
+name = "markdown"
+language-servers = ["marksman", "harper-ls"]
