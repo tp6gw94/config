@@ -1,8 +1,7 @@
-[[language-server.typescript-language-server.config.plugins]]
+[language-server.typescript-language-server.config.plugins]
 name = "@vue/typescript-plugin"
 location = "/Users/chenshengtai/.local/share/mise/installs/node/22.17.1/lib/node_modules/@vue/typescript-plugin"
 languages = ["vue"]
-
 
 [language-server.eslint]
 command = "vscode-eslint-language-server"
@@ -34,6 +33,9 @@ args = ["--stdio"]
 [language-server.harper-ls.config.harper-ls.linters]
 SentenceCapitalization = false
 
+[language-server.tailwindcss-ls]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
 [[language]]
 name = "vue"
 injection-regex = "vue"
@@ -45,10 +47,7 @@ formatter = { command = 'npx', args = ["prettier", "--parser", "vue"] }
 
 [[language]]
 name = "javascript"
-language-servers = [
-  "typescript-language-server",
-  "eslint",
-]
+language-servers = ["typescript-language-server", "eslint"]
 auto-format = true
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 
@@ -74,11 +73,6 @@ formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 name = "json"
 auto-format = false
 formatter = { command = 'npx', args = ["prettier", "--parser", "json"] }
-
-
-[language-server.tailwindcss-ls]
-command = "tailwindcss-language-server"
-args = ["--stdio"]
 
 [[language]]
 name = "html"
