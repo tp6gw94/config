@@ -1,7 +1,15 @@
-[language-server.typescript-language-server.config.plugins]
+[[language-server.typescript-language-server.config.plugins]]
 name = "@vue/typescript-plugin"
-location = "/Users/chenshengtai/.local/share/mise/installs/node/22.17.1/lib/node_modules/@vue/typescript-plugin"
+location = "/Users/chenshengtai/.local/share/mise/installs/node/22.17.1/lib/node_modules/@vue/language-server"
 languages = ["vue"]
+
+[language-server.vuels]
+command = "vue-language-server"
+args = ["--stdio"]
+
+[language-server.vuels.config]
+vue = { hybridMode = false }
+typescript = { tsdk = "/Users/chenshengtai/.local/share/mise/installs/npm-typescript/5.9.2/lib/node_modules/typescript/lib" }
 
 [language-server.eslint]
 command = "vscode-eslint-language-server"
@@ -36,13 +44,14 @@ SentenceCapitalization = false
 [language-server.tailwindcss-ls]
 command = "tailwindcss-language-server"
 args = ["--stdio"]
+
 [[language]]
 name = "vue"
 injection-regex = "vue"
 file-types = ["vue"]
 roots = ["package.json", ".git"]
 auto-format = true
-language-servers = ["vuels", "typescript-language-server", "tailwindcss-ls"]
+language-servers = ["vuels",  "tailwindcss-ls"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "vue"] }
 
 [[language]]
